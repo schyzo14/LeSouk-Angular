@@ -1,0 +1,81 @@
+<div>
+    <form name="detailAnnonceForm">
+        <div ng-controller="detailAnnonceCtrl">
+            <!--Panneau pour le détail de l'annonce-->
+            <div class="panel panel-primary">
+                <table class="table table-striped table-condensed">
+                    <div class="panel-heading"> 
+                        <div class="panel-title">
+                            <label>Annonce</label>
+                            <button type="button" class="btn btn-success pull-right" ng-click="detailAnnonce(detailAnnonceForm)">Clôturer</button><br />            
+                        </div>
+                    </div>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <label>Nom : {{nomAnnonce}}</label><br/>
+                                <label>Description : {{descrAnnonce}}</label><br/>
+                                <label>Prix : {{prixAnnonce}}</label><br/>
+                                <label>Date de création : {{dateCreatAnnonce}}</label><br/>
+                                <br/>
+                                <label>Lieu : {{lieuAnnonce}}</label><br/>
+                                <label>Etat : {{etatAnnonce}}</label><br/>          
+                            </td>
+                            <td>
+                                <div class="panel panel-default pull-right">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Annonce Cloturée</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <label>Candidat : {{candidat}}</label><br/>
+                                        <label>Annonceur : {{annonceur}}</label>                            
+                                    </div>  
+                                </div>  
+                            </td>
+                            <td>
+                                Icone
+                            </td>
+                        </tr>      
+                    </tbody>
+                </table>    
+            </div>
+            <button type="button" class="btn btn-danger pull-right" ng-click="detailAnnonce(detailAnnonceForm)">Faire une proposition d'achat</button><br/><br/> 
+            
+            <!--TextArea pour ajouter un commentaire-->
+            <div class="form-group">
+                <label for="comment">Ecrire un commentaire:</label>
+                <textarea class="form-control" rows="2" id="comment"></textarea>
+            </div>
+            <button type="button" class="btn btn-success pull-right" ng-click="detailAnnonce(detailAnnonceForm)">Envoyer</button><br/><br/> 
+            
+        
+            <!--Panneau pour les commentaires de l'annonce-->
+            <div class="panel panel-primary">
+                <table class="table table-striped table-condensed">
+                    <div class="panel-heading"> 
+                        <h3 class="panel-title">Commentaire(s)</h3>
+                    </div>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nom</th>
+                            <th>Date</th>
+                            <th>Commentaires</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="reponse in commentaire.listeCommentaires" class="text-center">
+                            <td>{{reponse.id}}</td>
+                            <td>{{reponse.nom}}</td>
+                            <td>{{reponse.dateC}}</td>
+                            <td>{{reponse.descComm}}</td>                  
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        
+    </form>
+
+</div>
