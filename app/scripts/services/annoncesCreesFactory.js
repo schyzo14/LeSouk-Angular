@@ -9,7 +9,7 @@
  */
 angular.module('leSoukApp')
   .factory('AnnoncesCreesFactory', function ($resource) {
-	return $resource('http://localhost:8080/api/lesouk/utilisateurs/:id/annoncesCrees', {
-         id: '@id'
+	return $resource('http://localhost:8080/api/lesouk/utilisateurs/:idU/annoncesCrees', {
+         idU: '@idU'
     });
 });

@@ -9,11 +9,20 @@
  */
 angular.module('leSoukApp')
   .controller('MainCtrl', ['$scope', 'AnnoncesCreesFactory', 'AnnoncesCandidateesFactory',
-	function () {
+	function ($scope, AnnoncesCreesFactory, AnnoncesCandidateesFactory) {
 
-	// Evenements crees
-	
-	// Evenements candidates
+		$scope.data = {};
+		$scope.data.id = 1;
+		
+		// Evenements crees
+		AnnoncesCreesFactory.get({'idU' : $scope.data.id}).$promise.then(function(data) {
+			$scope.annonceCrees = data;
+		});
+		
+		// Evenements candidates
+		AnnoncesCandidateesFactory.get({'idU' : $scope.data.id}).$promise.then(function(data) {
+			$scope.annonceCandidatees = data;
+		});
 	
 	}
-   ]);
+]);
