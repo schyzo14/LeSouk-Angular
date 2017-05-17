@@ -8,7 +8,7 @@
  * Factory in the leSoukApp.
  */
 angular.module('leSoukApp')
-  .factory('annoncesCandidateesFactory', function ($resource) {
+  .factory('AnnoncesCandidateesFactory', function ($resource) {
 	return $resource('http://localhost:8080/api/lesouk/utilisateurs/:id/annoncesCandidatees', {
          id: '@id'
     });

@@ -8,7 +8,7 @@
  * Controller of the leSoukApp
  */
 angular.module('leSoukApp')
-  .controller('MainCtrl', 
+  .controller('MainCtrl', ['$scope', 'AnnoncesCreesFactory', 'AnnoncesCandidateesFactory',
 	function () {
 
 	// Evenements crees
@@ -16,4 +16,4 @@ angular.module('leSoukApp')
 	// Evenements candidates
 	
 	}
-   );
+   ]);
