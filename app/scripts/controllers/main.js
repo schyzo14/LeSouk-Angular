@@ -8,10 +8,12 @@
  * Controller of the leSoukApp
  */
 angular.module('leSoukApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('MainCtrl', 
+	function () {
+
+	// Evenements crees
+	
+	// Evenements candidates
+	
+	}
+   );
