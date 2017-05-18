@@ -46,6 +46,11 @@ angular.module('leSoukApp')
                 {
                     console.log("Utilisateur = Annonceur ==> Lieu + Prix proposé + Date création du candidat");
                     $scope.prixProposeAnnonce = prixCandidat;
+                    /** Récupération éléments Utilisateur candidat**/
+                    //GET
+                    UtilisateurFactory.get({'idU' : idCand}).$promise.then(function(data) {
+                        
+                    });
                     $scope.annonceCoursUtilAnnonceur = true;
                     
                 }
