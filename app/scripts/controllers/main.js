@@ -15,12 +15,12 @@ angular.module('leSoukApp')
 		$scope.data.id = 1;
 		
 		// Evenements crees
-		AnnoncesCreesFactory.get({'idU' : $scope.data.id}).$promise.then(function(data) {
+		AnnoncesCreesFactory.query({'idU' : $scope.data.id}).$promise.then(function(data) {
 			$scope.annoncesCrees = data;
 		});
 		
 		// Evenements candidates
-		AnnoncesCandidateesFactory.get({'idU' : $scope.data.id}).$promise.then(function(data) {
+		AnnoncesCandidateesFactory.query({'idU' : $scope.data.id}).$promise.then(function(data) {
 			$scope.annoncesCandidatees = data;
 		});
 	
