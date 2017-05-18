@@ -23,6 +23,7 @@ angular.module('leSoukApp')
         /** Récupération éléments annonce**/
         //GET
         AnnonceFactory.get({'idA' : idA}).$promise.then(function(data) {
+            
             $scope.nomAnnonce = data.nomA;
             $scope.descrAnnonce = data.descriptionA;
             $scope.prixAnnonce = data.prixA;
@@ -35,24 +36,32 @@ angular.module('leSoukApp')
             
             if($scope.etatAnnonce=="Active" || $scope.etatAnnonce=="Optionnee") {
                 console.log("Annonce active ou optionnee!");
+                $scope.cloturee = false;
                 if(idU==idCand){
                     console.log("Utilisateur = Candidat ==> Logo");
+                    $scope.icone = true;
                 }
             
                 if(idU==idCreat)
                 {
-                    console.log("Utilisateur = Annonceur ==> Lieu + Prix proposé + Date création Candidature");
+                    console.log("Utilisateur = Annonceur ==> Lieu + Prix proposé + Date création du candidat");
+                    $scope.prixProposeAnnonce = prixCandidat;
+                    $scope.annonceCoursUtilAnnonceur = true;
+                    
                 }
             }else{
                 console.log("Annonce cloturee");
+                $scope.icone=false;
+                $scope.annonceCoursUtilAnnonceur = false;
+                $scope.cloturee = true;
                 if(idU==idCand){
-                    console.log("afficher identité candidat");
+                    console.log("afficher identité annonceur");
                 }
             
                 if(idU==idCreat){
-                    console.log("afficher identité créateur");
+                    console.log("afficher identité candidat");
                 }
-        }
+            }
             
             
         });

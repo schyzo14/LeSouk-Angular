@@ -18,11 +18,13 @@
                                 <label>Prix : {{prixAnnonce}}</label><br/>
                                 <label>Date de création : {{dateCreatAnnonce}}</label><br/>
                                 <br/>
-                                <label>Lieu : {{lieuAnnonce}}</label><br/>
+                                <label ng-show="annonceCoursUtilAnnonceur">Prix proposé : {{prixProposeAnnonce}}</label><br/>
+                                <label ng-show="annonceCoursUtilAnnonceur">Lieu : {{lieuAnnonce}}</label><br/>
+                                <label ng-show="annonceCoursUtilAnnonceur">Date de candidature : {{dateCandidature}}</label><br/>
                                 <label>Etat : {{etatAnnonce}}</label><br/>          
                             </td>
                             <td>
-                                <div class="panel panel-default pull-right">
+                                <div ng-show="cloturee" class="panel panel-default pull-right">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Annonce Cloturée</h3>
                                     </div>
@@ -33,7 +35,7 @@
                                 </div>  
                             </td>
                             <td>
-                                Icone
+                                 <img ng-show="icone" src="images/annonceEC.png" alt="annonce">
                             </td>
                         </tr>      
                     </tbody>
