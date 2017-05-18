@@ -99,13 +99,16 @@ angular.module('leSoukApp')
             }
             
             //Affichage des commentaires de l'annonce
-            
+            $scope.commentaire = data;
         });
     
         
         
         /** Reste à faire : 
-         - Affichage des commentaires de l'annonce 
+         - Affichage des commentaires de l'annonce
+         - Gestion des dates (serveur)
+         - DateCandidature (serveur)
+         - Desactiver bouton si cloturee
         **/
         
 

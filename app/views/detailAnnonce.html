@@ -61,17 +61,15 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Nom</th>
                             <th>Date</th>
                             <th>Commentaires</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="reponse in commentaire.listeCommentaires" class="text-center">
-                            <td>{{reponse.id}}</td>
-                            <td>{{reponse.nom}}</td>
-                            <td>{{reponse.dateC}}</td>
-                            <td>{{reponse.descComm}}</td>                  
+                        <tr ng-repeat="commentaire in commentaire.listeCommentaires" >
+                            <td>{{commentaire.idC}}</td>
+                            <td>{{commentaire.dateCreation}}</td>
+                            <td>{{commentaire.texte}}</td>                  
                         </tr>
                     </tbody>
                 </table>
