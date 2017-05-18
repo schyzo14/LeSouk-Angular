@@ -8,17 +8,14 @@
  * Controller of the clientApp
  */
 angular.module('leSoukApp')
-  .controller('detailAnnonceCtrl', ['$scope', '$routeParams', 'AnnonceFactory', '$location',
-    function ($scope, $routeParams, AnnonceFactory, $location) {
-        var idU = $routeParams.idU;
-        var villeU = $routeParams.villeU;
-        var paysU = $routeParams.paysU;
+  .controller('detailAnnonceCtrl', ['$scope', '$routeParams', 'AnnonceFactory', '$location', 'UtilisateurFactory',
+    function ($scope, $routeParams, AnnonceFactory, $location, UtilisateurFactory) {
+        var idU = /*$routeParams.idU*/ 1;
         var dateCreatAnn = "";
         var idCreat = "";
         var idCand = "";
         var prixCandidat = 0;
         var idA = $routeParams.idA;
-        console.log(idA);
       
         /** Récupération éléments annonce**/
         //GET
@@ -34,49 +31,81 @@ angular.module('leSoukApp')
             idCand = data.idUCandidat;
             prixCandidat = data.prixCandidat;
             
+            //Pour test : $scope.etatAnnonce="Cloturee";
             if($scope.etatAnnonce=="Active" || $scope.etatAnnonce=="Optionnee") {
-                console.log("Annonce active ou optionnee!");
                 $scope.cloturee = false;
                 if(idU==idCand){
-                    console.log("Utilisateur = Candidat ==> Logo");
+                    /**Utilisateur = Candidat ==> Logo**/
                     $scope.icone = true;
                 }
-            
+                
                 if(idU==idCreat)
                 {
-                    console.log("Utilisateur = Annonceur ==> Lieu + Prix proposé + Date création du candidat");
-                    $scope.prixProposeAnnonce = prixCandidat;
+                    /**Utilisateur = Annonceur ==> Lieu + Prix proposé + Date création du candidat**/
                     /** Récupération éléments Utilisateur candidat**/
                     //GET
-                    UtilisateurFactory.get({'idU' : idCand}).$promise.then(function(data) {
+                    idCand=1; //Pour test
+                    if(idCand!=null){
+                        UtilisateurFactory.get({'idU' : idCand}).$promise.then(function(data) {
+                            $scope.lieuAnnonce = data.ville+" - "+data.pays;
+                            $scope.dateCandidature = "A AJOUTER";
+                            if(prixCandidat==null){                         
+                                $scope.prixProposeAnnonce="Aucun prix";
+                            }else{
+                                $scope.prixProposeAnnonce = prixCandidat;
+                            }
+                            
+                        });
                         
-                    });
-                    $scope.annonceCoursUtilAnnonceur = true;
+                        $scope.annonceCoursUtilAnnonceur = true;
+                        $scope.aucunCandidat=false;
+                    }else{
+                        //Aucun candidat
+                        $scope.annonceCoursUtilAnnonceur = false;
+                        $scope.aucunCandidat=true;
+                    }
+                    
+                    
                     
                 }
             }else{
-                console.log("Annonce cloturee");
+                //Annonce cloturee
                 $scope.icone=false;
                 $scope.annonceCoursUtilAnnonceur = false;
+                $scope.aucunCandidat=false;
                 $scope.cloturee = true;
+                
                 if(idU==idCand){
-                    console.log("afficher identité annonceur");
+                    /** Récupération éléments Utilisateur annonceur**/
+                    //GET
+                    idCreat=1; //Pour test
+                    if(idCreat!=null){
+                        UtilisateurFactory.get({'idU' : idCreat}).$promise.then(function(data) {
+                            $scope.annonceur = data.pseudo;
+                        });
+                    }
                 }
-            
+                
                 if(idU==idCreat){
-                    console.log("afficher identité candidat");
+                    /** Récupération éléments Utilisateur candidat**/
+                    //GET
+                    idCand=1; //Pour test
+                    if(idCand!=null){
+                        UtilisateurFactory.get({'idU' : idCand}).$promise.then(function(data) {
+                            $scope.candidat = data.pseudo;
+                        });
+                    }
                 }
             }
             
+            //Affichage des commentaires de l'annonce
             
         });
     
         
         
         /** Reste à faire : 
-         - Affichage des informations suivant état de l'annonce
-         - Affichage des commentaires de l'annonce
-         - Tester 
+         - Affichage des commentaires de l'annonce 
         **/
         
 
