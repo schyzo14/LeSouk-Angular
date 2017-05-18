@@ -13,11 +13,13 @@
     <table class="table table-hover">
 		<tr>
 			<th>Id</th>
+			<th>Date</th>
 			<th>Nom</th>
             <th></th>
 		</tr>
 		<tr ng-repeat="annonceCrees in annoncesCrees">
 			<td>{{annonceCrees.idA}}</td>
+			<td>{{annonceCrees.dateCreaA}}</td>
 			<td>{{annonceCrees.nomA}}</td>
 		</tr>
 	</table>
@@ -28,11 +30,13 @@
     <table class="table table-hover">
 		<tr>
 			<th>Id</th>
+			<th>Date</th>
 			<th>Nom</th>
             <th></th>
 		</tr>
 		<tr ng-repeat="annonceCandidatees in annoncesCandidatees">
 			<td>{{annonceCandidatees.idA}}</td>
+			<td>{{annonceCandidatees.dateCreaA}}</td>
 			<td>{{annonceCandidatees.nomA}}</td>
 		</tr>
 	</table>
