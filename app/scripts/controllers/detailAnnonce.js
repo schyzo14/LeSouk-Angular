@@ -10,11 +10,9 @@
 angular.module('leSoukApp')
   .controller('detailAnnonceCtrl', ['$scope', '$routeParams', 'AnnonceFactory', '$location', 'UtilisateurFactory',
     function ($scope, $routeParams, AnnonceFactory, $location, UtilisateurFactory) {
-        var idU = /*$routeParams.idU*/ 1;
-        var dateCreatAnn = "";
+        var idU = /*cookies*/ 1;
         var idCreat = "";
         var idCand = "";
-        var prixCandidat = 0;
         var idA = $routeParams.idA;
       
         /** Récupération éléments annonce**/
@@ -24,13 +22,10 @@ angular.module('leSoukApp')
             $scope.nomAnnonce = data.nomA;
             $scope.descrAnnonce = data.descriptionA;
             $scope.prixAnnonce = data.prixA;
-            $scope.dateCreatAnnonce = ""; 
-            dateCreatAnn = data.dateCreaA;
-            console.log("dateCreatAnn : "+dateCreatAnn);
+            $scope.dateCreatAnnonce = data.dateCreaA;
             $scope.etatAnnonce = data.etatA;
             idCreat = data.idUCreateur;
             idCand = data.idUCandidat;
-            prixCandidat = data.prixCandidat;
             
             //Pour test : $scope.etatAnnonce="Cloturee";
             if($scope.etatAnnonce=="Active" || $scope.etatAnnonce=="Optionnée") {
@@ -56,13 +51,13 @@ angular.module('leSoukApp')
                     /** Récupération éléments Utilisateur candidat**/
                     //GET
                     if(idCand!=null){
-                        UtilisateurFactory.get({'idU' : idCand}).$promise.then(function(data) {
-                            $scope.lieuAnnonce = data.ville+" - "+data.pays;
+                        UtilisateurFactory.get({'idU' : idCand}).$promise.then(function(dataUtil) {
+                            $scope.lieuAnnonce = dataUtil.ville+" - "+dataUtil.pays;
                             $scope.dateCandidature = data.dateCandidat;
-                            if(prixCandidat==null){                       
+                            if(data.prixCandidat===null){                       
                                 $scope.prixProposeAnnonce="Aucun prix";
                             }else{
-                                $scope.prixProposeAnnonce = prixCandidat;
+                                $scope.prixProposeAnnonce = data.prixCandidat;
                             }
                             
                         });
