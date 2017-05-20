@@ -31,7 +31,10 @@
 					<button type="button" class="btn btn-primary">Détail</button>
 				</a>
 			</td>
-			<td></td>
+			<td>
+				<span ng-show="'{{annonceCrees.etatA}}' == 'Optionnée'" class="glyphicon glyphicon-bell" />
+				<span ng-show="'{{annonceCrees.etatA}}' == 'Cloturée'" class="glyphicon glyphicon-ok" />
+			</td>
 		</tr>
 	</table>
   </p>
