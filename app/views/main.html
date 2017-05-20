@@ -7,6 +7,10 @@
 <!--  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>-->
 </div>
 
+<div>
+	<h2>Bonjour xxx</h2>
+</div>
+
 <div class="row marketing">
   <h4>Mes Annonces</h4>
   <p>
@@ -15,12 +19,19 @@
 			<th>Id</th>
 			<th>Date</th>
 			<th>Nom</th>
-            <th></th>
+            <th>Détail</th>
+			<th>Info</th>
 		</tr>
 		<tr ng-repeat="annonceCrees in annoncesCrees">
 			<td>{{annonceCrees.idA}}</td>
 			<td>{{annonceCrees.dateCreaA}}</td>
 			<td>{{annonceCrees.nomA}}</td>
+			<td>
+				<a ng-href="#!/detailAnnonce/{{annonceCrees.idA}}">
+					<button type="button" class="btn btn-primary">Détail</button>
+				</a>
+			</td>
+			<td></td>
 		</tr>
 	</table>
   </p>
@@ -32,12 +43,19 @@
 			<th>Id</th>
 			<th>Date</th>
 			<th>Nom</th>
+			<th>Détail</th>
             <th></th>
 		</tr>
 		<tr ng-repeat="annonceCandidatees in annoncesCandidatees">
 			<td>{{annonceCandidatees.idA}}</td>
 			<td>{{annonceCandidatees.dateCreaA}}</td>
 			<td>{{annonceCandidatees.nomA}}</td>
+			<td>
+				<a ng-href="#!/detailAnnonce/{{annonceCandidatees.idA}}">
+					<button type="button" class="btn btn-primary">Détail</button>
+				</a>
+			</td>
+			<td></td>
 		</tr>
 	</table>
   </p>
