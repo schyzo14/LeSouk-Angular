@@ -28,7 +28,7 @@ angular.module('leSoukApp')
             idCand = data.idUCandidat;
             
             //Pour test : $scope.etatAnnonce="Cloturee";
-            if($scope.etatAnnonce=="Active" || $scope.etatAnnonce=="Optionnée") {
+            if($scope.etatAnnonce==="Active" || $scope.etatAnnonce==="Optionnée") {
                 
                 //Affichage des boutons CLoturer et Optionnée que si Active
                 if($scope.etatAnnonce==="Active"){
@@ -40,17 +40,17 @@ angular.module('leSoukApp')
                 }
                 
                 $scope.cloturee = false;
-                if(idU==idCand){
+                if(idU===idCand){
                     /**Utilisateur = Candidat ==> Logo**/
                     $scope.icone = true;
                 }
                 
-                if(idU==idCreat)
+                if(idU===idCreat)
                 {
                     /**Utilisateur = Annonceur ==> Lieu + Prix proposé + Date création du candidat**/
                     /** Récupération éléments Utilisateur candidat**/
                     //GET
-                    if(idCand!=null){
+                    if(idCand!==null){
                         UtilisateurFactory.get({'idU' : idCand}).$promise.then(function(dataUtil) {
                             $scope.lieuAnnonce = dataUtil.ville+" - "+dataUtil.pays;
                             $scope.dateCandidature = data.dateCandidat;
@@ -82,22 +82,22 @@ angular.module('leSoukApp')
                 $scope.boutonCloturer=false;
                 $scope.boutonProp=false;
                 
-                if(idU==idCand){
+                if(idU===idCand){
                     /** Récupération éléments Utilisateur annonceur**/
                     //GET
                     idCreat=1; //Pour test
-                    if(idCreat!=null){
+                    if(idCreat!==null){
                         UtilisateurFactory.get({'idU' : idCreat}).$promise.then(function(data) {
                             $scope.annonceur = data.pseudo;
                         });
                     }
                 }
                 
-                if(idU==idCreat){
+                if(idU===idCreat){
                     /** Récupération éléments Utilisateur candidat**/
                     //GET
                     idCand=1; //Pour test
-                    if(idCand!=null){
+                    if(idCand!==null){
                         UtilisateurFactory.get({'idU' : idCand}).$promise.then(function(data) {
                             $scope.candidat = data.pseudo;
                         });

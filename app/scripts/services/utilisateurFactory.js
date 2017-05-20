@@ -11,5 +11,5 @@ angular.module('leSoukApp')
   .factory('UtilisateurFactory', function ($resource) {
 	return $resource('http://localhost:8080/api/utilisateurs/:idU', {
         idU : '@idU'
-    })
+    });
   });
