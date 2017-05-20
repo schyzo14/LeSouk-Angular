@@ -26,13 +26,24 @@ angular.module('leSoukApp')
             $scope.prixAnnonce = data.prixA;
             $scope.dateCreatAnnonce = ""; 
             dateCreatAnn = data.dateCreaA;
+            console.log("dateCreatAnn : "+dateCreatAnn);
             $scope.etatAnnonce = data.etatA;
             idCreat = data.idUCreateur;
             idCand = data.idUCandidat;
             prixCandidat = data.prixCandidat;
             
             //Pour test : $scope.etatAnnonce="Cloturee";
-            if($scope.etatAnnonce=="Active" || $scope.etatAnnonce=="Optionnee") {
+            if($scope.etatAnnonce=="Active" || $scope.etatAnnonce=="Optionnée") {
+                
+                //Affichage des boutons CLoturer et Optionnée que si Active
+                if($scope.etatAnnonce==="Active"){
+                    $scope.boutonProp=true;
+                    $scope.boutonCloturer=true;
+                }else{
+                    $scope.boutonProp=false;
+                    $scope.boutonCloturer=true;
+                }
+                
                 $scope.cloturee = false;
                 if(idU==idCand){
                     /**Utilisateur = Candidat ==> Logo**/
@@ -44,12 +55,11 @@ angular.module('leSoukApp')
                     /**Utilisateur = Annonceur ==> Lieu + Prix proposé + Date création du candidat**/
                     /** Récupération éléments Utilisateur candidat**/
                     //GET
-                    idCand=1; //Pour test
                     if(idCand!=null){
                         UtilisateurFactory.get({'idU' : idCand}).$promise.then(function(data) {
                             $scope.lieuAnnonce = data.ville+" - "+data.pays;
-                            $scope.dateCandidature = "A AJOUTER";
-                            if(prixCandidat==null){                         
+                            $scope.dateCandidature = data.dateCandidat;
+                            if(prixCandidat==null){                       
                                 $scope.prixProposeAnnonce="Aucun prix";
                             }else{
                                 $scope.prixProposeAnnonce = prixCandidat;
@@ -60,11 +70,11 @@ angular.module('leSoukApp')
                         $scope.annonceCoursUtilAnnonceur = true;
                         $scope.aucunCandidat=false;
                     }else{
+                        console.log("aucun candidat");
                         //Aucun candidat
                         $scope.annonceCoursUtilAnnonceur = false;
                         $scope.aucunCandidat=true;
-                    }
-                    
+                    }                   
                     
                     
                 }
@@ -74,6 +84,8 @@ angular.module('leSoukApp')
                 $scope.annonceCoursUtilAnnonceur = false;
                 $scope.aucunCandidat=false;
                 $scope.cloturee = true;
+                $scope.boutonCloturer=false;
+                $scope.boutonProp=false;
                 
                 if(idU==idCand){
                     /** Récupération éléments Utilisateur annonceur**/
@@ -107,8 +119,6 @@ angular.module('leSoukApp')
         /** Reste à faire : 
          - Affichage des commentaires de l'annonce
          - Gestion des dates (serveur)
-         - DateCandidature (serveur)
-         - Desactiver bouton si cloturee
         **/
         
 

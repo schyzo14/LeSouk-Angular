@@ -7,7 +7,7 @@
                     <div class="panel-heading"> 
                         <div class="panel-title">
                             <label>Annonce</label>
-                            <button type="button" class="btn btn-success pull-right" ng-click="detailAnnonce(detailAnnonceForm)">Clôturer</button><br />            
+                            <button type="button" class="btn btn-success pull-right" ng-show="boutonCloturer" ng-click="detailAnnonce(detailAnnonceForm)">Clôturer</button><br />            
                         </div>
                     </div>
                     <tbody>
@@ -42,14 +42,15 @@
                     </tbody>
                 </table>    
             </div>
-            <button type="button" class="btn btn-danger pull-right" ng-click="detailAnnonce(detailAnnonceForm)">Faire une proposition d'achat</button><br/><br/> 
+            <button type="button" class="btn btn-danger pull-right" ng-show="boutonProp" ng-click="detailAnnonce(detailAnnonceForm)">Faire une proposition d'achat</button><br/><br/> 
             
             <!--TextArea pour ajouter un commentaire-->
             <div class="form-group">
                 <label for="comment">Ecrire un commentaire:</label>
-                <textarea class="form-control" rows="2" id="comment"></textarea>
+                <textarea class="form-control" rows="2" id="comment"></textarea><br/>
+                <button type="button" class="btn btn-success pull-right" ng-click="detailAnnonce(detailAnnonceForm)">Envoyer</button><br/><br/> 
             </div>
-            <button type="button" class="btn btn-success pull-right" ng-click="detailAnnonce(detailAnnonceForm)">Envoyer</button><br/><br/> 
+            
             
         
             <!--Panneau pour les commentaires de l'annonce-->
