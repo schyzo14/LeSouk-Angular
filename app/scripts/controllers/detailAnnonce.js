@@ -21,7 +21,7 @@ angular.module('leSoukApp')
             
             $scope.nomAnnonce = data.nomA;
             $scope.descrAnnonce = data.descriptionA;
-            $scope.prixAnnonce = data.prixA;
+            $scope.prixAnnonce = data.prixA+" €";
             $scope.dateCreatAnnonce = data.dateCreaA;
             $scope.etatAnnonce = data.etatA;
             idCreat = data.idUCreateur;
@@ -57,7 +57,7 @@ angular.module('leSoukApp')
                             if(data.prixCandidat===null){                       
                                 $scope.prixProposeAnnonce="Aucun prix";
                             }else{
-                                $scope.prixProposeAnnonce = data.prixCandidat;
+                                $scope.prixProposeAnnonce = data.prixCandidat+" €";
                             }
                             
                         });

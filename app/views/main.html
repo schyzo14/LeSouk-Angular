@@ -6,7 +6,22 @@
   </p>
 <!--  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>-->
 </div>
+<div>
+    <form name="seConnecterForm">
+        <div ng-controller="SeConnecterCtrl">
+        
+            <label>Nom d'utilisateur</label>
+            <input type="text" class="form-control" id="nomUtil" ng-model="data.nomUtil" /><br />
+            
+            <label>Mot de passe</label>
+            <input type="password" class="form-control" id="mdpUtil" ng-model="data.password" /><br />
+        
+            <button type="button" class="btn btn-success btn-block" ng-click="seConnecterF(seConnecterForm)">Se connecter</button><br />
+        </div>
+        
+    </form>
 
+</div>
 <div>
 	<h2>Bonjour xxx</h2>
 </div>

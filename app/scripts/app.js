@@ -37,4 +37,15 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+.run(function ($rootScope, $location, $cookies) {
+    $rootScope.$on('$routeChangeStart', function (currRoute, prevRoute) {
+      if (prevRoute.access != undefined) {
+        // if route requires auth and user is not logged in
+        if (!prevRoute.access.isFreeAccess && ($cookies.get('idP') == null)) {
+          // redirects to index
+          $location.path('/');
+        }
+      }
+    })
   });
