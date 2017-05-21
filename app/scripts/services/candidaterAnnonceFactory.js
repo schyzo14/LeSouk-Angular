@@ -8,8 +8,9 @@
  * Factory in the clientApp.
  */
 angular.module('leSoukApp')
-  .factory('AnnonceFactory', function ($resource) {
-	return $resource('http://localhost:8080/api/annonces/:idA',
+  .factory('CandidaterAnnonceFactory', function ($resource) {
+	return $resource('http://localhost:8080/api/annonces/candidater/:idA',
       {idA : '@idA'},
+      {update : {method:'PUT'}}
     );
   });

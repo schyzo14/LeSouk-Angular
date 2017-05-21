@@ -14,11 +14,11 @@ angular.module('leSoukApp')
         var idCreat = "";
         var idCand = "";
         var idA = $routeParams.idA;
-      
+
         /** Récupération éléments annonce**/
         //GET
         AnnonceFactory.get({'idA' : idA}).$promise.then(function(data) {
-            
+            $scope.idAnnonce = data.idA;
             $scope.nomAnnonce = data.nomA;
             $scope.descrAnnonce = data.descriptionA;
             $scope.prixAnnonce = data.prixA+" €";
@@ -26,10 +26,10 @@ angular.module('leSoukApp')
             $scope.etatAnnonce = data.etatA;
             idCreat = data.idUCreateur;
             idCand = data.idUCandidat;
-            
+
             //Pour test : $scope.etatAnnonce="Cloturee";
             if($scope.etatAnnonce==="Active" || $scope.etatAnnonce==="Optionnée") {
-                
+
                 //Affichage des boutons CLoturer et Optionnée que si Active
                 if($scope.etatAnnonce==="Active"){
                     $scope.boutonProp=true;
@@ -38,13 +38,13 @@ angular.module('leSoukApp')
                     $scope.boutonProp=false;
                     $scope.boutonCloturer=true;
                 }
-                
+
                 $scope.cloturee = false;
                 if(idU===idCand){
                     /**Utilisateur = Candidat ==> Logo**/
                     $scope.icone = true;
                 }
-                
+
                 if(idU===idCreat)
                 {
                     /**Utilisateur = Annonceur ==> Lieu + Prix proposé + Date création du candidat**/
@@ -54,14 +54,14 @@ angular.module('leSoukApp')
                         UtilisateurFactory.get({'idU' : idCand}).$promise.then(function(dataUtil) {
                             $scope.lieuAnnonce = dataUtil.ville+" - "+dataUtil.pays;
                             $scope.dateCandidature = data.dateCandidat;
-                            if(data.prixCandidat===null){                       
+                            if(data.prixCandidat===null){
                                 $scope.prixProposeAnnonce="Aucun prix";
                             }else{
                                 $scope.prixProposeAnnonce = data.prixCandidat+" €";
                             }
-                            
+
                         });
-                        
+
                         $scope.annonceCoursUtilAnnonceur = true;
                         $scope.aucunCandidat=false;
                     }else{
@@ -69,9 +69,9 @@ angular.module('leSoukApp')
                         //Aucun candidat
                         $scope.annonceCoursUtilAnnonceur = false;
                         $scope.aucunCandidat=true;
-                    }                   
-                    
-                    
+                    }
+
+
                 }
             }else{
                 //Annonce cloturee
@@ -81,7 +81,7 @@ angular.module('leSoukApp')
                 $scope.cloturee = true;
                 $scope.boutonCloturer=false;
                 $scope.boutonProp=false;
-                
+
                 if(idU===idCand){
                     /** Récupération éléments Utilisateur annonceur**/
                     //GET
@@ -92,7 +92,7 @@ angular.module('leSoukApp')
                         });
                     }
                 }
-                
+
                 if(idU===idCreat){
                     /** Récupération éléments Utilisateur candidat**/
                     //GET
@@ -104,17 +104,17 @@ angular.module('leSoukApp')
                     }
                 }
             }
-            
+
             //Affichage des commentaires de l'annonce
             $scope.commentaire = data;
         });
-    
-        
-        
-        /** Reste à faire : 
+
+
+
+        /** Reste à faire :
          - Affichage des commentaires de l'annonce
          - Gestion des dates (serveur)
         **/
-        
+
 
   }]);

@@ -34,6 +34,11 @@ angular
         controller: 'detailAnnonceCtrl',
         controllerAs: 'detailAnnonce'
       })
+      .when('/propositionAchat/:idA', {
+        templateUrl: 'views/propositionAchat.html',
+        controller: 'propositionAchatCtrl',
+        controllerAs: 'propositionAchat'
+      })
       .otherwise({
         redirectTo: '/'
       });
