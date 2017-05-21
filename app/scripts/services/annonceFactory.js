@@ -10,6 +10,6 @@
 angular.module('leSoukApp')
   .factory('AnnonceFactory', function ($resource) {
 	return $resource('http://localhost:8080/api/annonces/:idA',
-      {idA : '@idA'},
+      {idA : '@idA'}
     );
   });

@@ -1,3 +1,4 @@
+'use strict';
 angular.module('leSoukApp')
   .service('Connexion', ['$cookies', function($cookies) {
     var user = $cookies.get('idU');
@@ -11,5 +12,5 @@ angular.module('leSoukApp')
       isConnected : function() {
         return !!user;
       }
-    }
+    };
   }]);

@@ -48,14 +48,15 @@ angular
         redirectTo: '/'
       });
   })
-.run(function ($rootScope, $location, $cookies) {
+    .run(function ($rootScope, $location, $cookies) {
     $rootScope.$on('$routeChangeStart', function (currRoute, prevRoute) {
-      if (prevRoute.access != undefined) {
+        if (prevRoute.access !== undefined) {
+          
         // if route requires auth and user is not logged in
-        if (!prevRoute.access.isFreeAccess && ($cookies.get('idP') == null)) {
+        if (!prevRoute.access.isFreeAccess && ($cookies.get('idU') === null)) {
           // redirects to index
           $location.path('/');
         }
       }
-    })
+    });
   });

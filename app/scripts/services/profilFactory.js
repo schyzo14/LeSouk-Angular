@@ -11,5 +11,5 @@ angular.module('leSoukApp')
   .factory('ProfilFactory', function ($resource) {
 	return $resource('http://localhost:8080/api/utilisateurs/user/:pseudoU', {
         
-    })
+    });
   });
