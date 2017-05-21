@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc service
- * @name clientApp.AnnonceFactory
+ * @name leSoukApp.AnnonceFactory
  * @description
  * # AnnonceFactory
- * Factory in the clientApp.
+ * Factory in the leSoukApp.
  */
 angular.module('leSoukApp')
   .factory('AnnonceFactory', function ($resource) {

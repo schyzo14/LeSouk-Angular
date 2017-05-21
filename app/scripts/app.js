@@ -39,6 +39,11 @@ angular
         controller: 'propositionAchatCtrl',
         controllerAs: 'propositionAchat'
       })
+      .when('/seDeconnecter', {
+        templateUrl: 'views/seDeconnecter.html',
+        controller: 'SeDeconnecterCtrl',
+        controllerAs: 'SeDeconnecter'
+      })
       .otherwise({
         redirectTo: '/'
       });

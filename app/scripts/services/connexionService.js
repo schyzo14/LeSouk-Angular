@@ -1,6 +1,6 @@
 angular.module('leSoukApp')
   .service('Connexion', ['$cookies', function($cookies) {
-    var user = $cookies.get('idP');
+    var user = $cookies.get('idU');
     return {
       getUser : function() {
         return user;
