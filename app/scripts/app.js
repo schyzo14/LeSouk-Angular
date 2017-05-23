@@ -24,7 +24,7 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-	  .when('/:idU', {
+	  .when('/compte', {
         templateUrl: 'views/pageDeGarde.html',
         controller: 'PageDeGardeCtrl',
         controllerAs: 'pageDeGarde'

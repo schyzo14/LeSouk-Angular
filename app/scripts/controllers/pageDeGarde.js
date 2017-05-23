@@ -8,21 +8,27 @@
  * Controller of the leSoukApp
  */
 angular.module('leSoukApp')
-  .controller('PageDeGardeCtrl', ['$scope', 'AnnoncesCreesFactory', 'AnnoncesCandidateesFactory',
-	function ($scope, AnnoncesCreesFactory, AnnoncesCandidateesFactory) {
+  .controller('PageDeGardeCtrl', ['$scope', '$cookies', 'AnnoncesCreesFactory', 'AnnoncesCandidateesFactory', 'UtilisateurFactory',
+	function ($scope, $cookies, AnnoncesCreesFactory, AnnoncesCandidateesFactory, UtilisateurFactory) {
 
-		$scope.data = {};
-		$scope.data.id = 1;
+		$scope.user = {};
+		$scope.user.id = $cookies.get('idU');
 		
+		// Utilisateur
+		UtilisateurFactory.get({'idU' : $scope.user.id}).$promise.then(function(dataUtil) {
+			$scope.user.nom = dataUtil.nom;
+			$scope.user.prenom = dataUtil.prenom;
+       });
+	   
 		// Evenements crees
-		AnnoncesCreesFactory.query({'idU' : $scope.data.id}).$promise.then(function(data) {
+		AnnoncesCreesFactory.query({'idU' : $scope.user.id}).$promise.then(function(data) {
 			$scope.annoncesCrees = data;
 		});
 		
 		// Evenements candidates
-		AnnoncesCandidateesFactory.query({'idU' : $scope.data.id}).$promise.then(function(data) {
+		AnnoncesCandidateesFactory.query({'idU' : $scope.user.id}).$promise.then(function(data) {
 			$scope.annoncesCandidatees = data;
 		});
-	
+		
 	}
 ]);
