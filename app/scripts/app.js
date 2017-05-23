@@ -24,6 +24,11 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
+	  .when('/:idU', {
+        templateUrl: 'views/pageDeGarde.html',
+        controller: 'PageDeGardeCtrl',
+        controllerAs: 'pageDeGarde'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
