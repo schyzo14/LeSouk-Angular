@@ -49,11 +49,9 @@
             <!--TextArea pour ajouter un commentaire-->
             <div class="form-group">
                 <label for="comment">Ecrire un commentaire:</label>
-                <textarea class="form-control" rows="2" id="comment"></textarea><br/>
-                <button type="button" class="btn btn-success pull-right" ng-click="detailAnnonce(detailAnnonceForm)">Envoyer</button><br/><br/>
+                <textarea class="form-control" rows="2" id="comment" ng-model="comment"></textarea><br/>
+                <button type="button" class="btn btn-success pull-right" ng-click="commenter(this)">Envoyer</button><br/><br/>
             </div>
-
-
 
             <!--Panneau pour les commentaires de l'annonce-->
             <div class="panel panel-primary">

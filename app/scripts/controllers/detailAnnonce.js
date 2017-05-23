@@ -8,8 +8,8 @@
  * Controller of the clientApp
  */
 angular.module('leSoukApp')
-  .controller('detailAnnonceCtrl', ['$scope', '$routeParams', '$cookies', 'AnnonceFactory', '$location', 'UtilisateurFactory',
-    function ($scope, $routeParams, $cookies, AnnonceFactory, $location, UtilisateurFactory) {
+  .controller('detailAnnonceCtrl', ['$scope', '$routeParams', '$cookies', 'AnnonceFactory', '$location', 'UtilisateurFactory', 'CommenterAnnonceFactory',
+    function ($scope, $routeParams, $cookies, AnnonceFactory, $location, UtilisateurFactory, CommenterAnnonceFactory) {
         var idU = $cookies.get('idU');
         var idCreat = "";
         var idCand = "";
@@ -109,5 +109,26 @@ angular.module('leSoukApp')
         //}else{
           //  $location.path('/');
         //}
+		
+		
+		// Commenter une annonce
+		$scope.commenter = function() {
+			
+			alert("En cours... Laisse moi le temps de boire un café ! - idA : " + $scope.idAnnonce + " - idU : " + idU + " - texte : " + $scope.comment);
+			
+			var comm = new CommenterAnnonceFactory({
+				idA : $scope.idAnnonce,
+				idU: idU,
+				texte: $scope.comment
+			});
+			/** on fait un post pour créer l'évènement **/
+			comm.$save(function success(data){
+				alert('comm créer... ou pas !');
+				$location.path('/detailAnnonce/'+$scope.idAnnonce);
+			}, function error(){
+				alert("Echec lors de la création du commentaire !");
+			});
+			
+		};
 
   }]);
