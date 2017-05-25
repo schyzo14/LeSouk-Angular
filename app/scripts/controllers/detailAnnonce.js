@@ -8,9 +8,10 @@
  * Controller of the clientApp
  */
 angular.module('leSoukApp')
-  .controller('detailAnnonceCtrl', ['$scope', '$routeParams', '$cookies', 'AnnonceFactory', '$location', '$route', 'UtilisateurFactory', 'CommenterAnnonceFactory',
-    function ($scope, $routeParams, $cookies, AnnonceFactory, $location, $route, UtilisateurFactory, CommenterAnnonceFactory) {
-        var idU = $cookies.get('idU');
+  .controller('detailAnnonceCtrl', ['$scope', '$routeParams', '$cookies', 'AnnonceFactory', '$location', '$route', '$window', '$templateCache', 'UtilisateurFactory', 'CommenterAnnonceFactory',
+    function ($scope, $routeParams, $cookies, AnnonceFactory, $location, $route, $window, $templateCache, UtilisateurFactory, CommenterAnnonceFactory) {
+
+		var idU = $cookies.get('idU');
         var idCreat = "";
         var idCand = "";
         var idA = $routeParams.idA;
@@ -114,19 +115,18 @@ angular.module('leSoukApp')
 		// Commenter une annonce
 		$scope.commenter = function() {
 			
-			alert("En cours... Laisse moi le temps de boire un café ! - idA : " + $scope.idAnnonce + " - idU : " + idU + " - texte : " + $scope.comment);
-			
+			// Création de la variable Commentaire
 			var comm = new CommenterAnnonceFactory({
 				idA : $scope.idAnnonce,
 				idU: idU,
 				texte: $scope.comment
 			});
-			/** on fait un post pour créer l'évènement **/
-			comm.$save(function success(data){
-				alert('commentaire créé !');
-				//$location.path('/detailAnnonce/'+$scope.idAnnonce);
-				//$window.location.reload();
-				$route.reload();
+			
+			// on fait un post pour créer le commentaire
+			comm.$save(function success(dataC){
+				alert('Le commentaire est ajouté !');
+				// raffraichir la page
+				$window.location.reload();
 			}, function error(){
 				alert("Echec lors de la création du commentaire !");
 			});
