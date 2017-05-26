@@ -23,9 +23,10 @@ angular.module('leSoukApp')
 				var idU = data.id;
                 
                 if(mdpU===mdpUtil){
-                    console.log("idU : "+idU);
                     $cookies.put('idU', idU);
                     Connexion.setUser(idU);
+                    
+                    $location.path('/compte');
                 }else{
                     alert("Couple utilisateur/mot de passe incorrect. Réessayez ! ");
                 }
