@@ -26,6 +26,7 @@ angular.module('leSoukApp')
         CandidaterAnnonceFactory.update({'idA' : $scope.annonce.idA}, $scope.annonce)
         .$promise.then(function() {
           console.log("Enregistrement good");
+          $window.location.href = '#!/detailAnnonce/'+idA;
         });
       } else {
         $window.alert("Veuillez faire une proposition");

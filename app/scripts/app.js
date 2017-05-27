@@ -49,6 +49,11 @@ angular
         controller: 'SeDeconnecterCtrl',
         controllerAs: 'SeDeconnecter'
       })
+      .when('/cloturerAnnonce/:idA', {
+        templateUrl: 'views/cloturerAnnonce.html',
+        controller: 'cloturerAnnonceCtrl',
+        controllerAs: 'cloturerAnnonce'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -56,7 +61,7 @@ angular
     .run(function ($rootScope, $location, $cookies) {
     $rootScope.$on('$routeChangeStart', function (currRoute, prevRoute) {
         if (prevRoute.access !== undefined) {
-          
+
         // if route requires auth and user is not logged in
         if (!prevRoute.access.isFreeAccess && ($cookies.get('idU') === null)) {
           // redirects to index
