@@ -16,7 +16,7 @@ angular.module('leSoukApp')
         var idCand = "";
         var idA = $routeParams.idA;
         
-        //if(idU!==undefined){
+        if(idU!==undefined){
             /** Récupération éléments annonce**/
             //GET
             AnnonceFactory.get({'idA' : idA}).$promise.then(function(data) {
@@ -107,9 +107,9 @@ angular.module('leSoukApp')
                 //Affichage des commentaires de l'annonce
                 $scope.commentaire = data;
             });
-        //}else{
-          //  $location.path('/');
-        //}
+        }else{
+            $location.path('/');
+        }
 		
 		
 		// Commenter une annonce
@@ -123,12 +123,12 @@ angular.module('leSoukApp')
 			});
 			
 			// on fait un post pour créer le commentaire
-			comm.$save(function success(dataC){
-				alert('Le commentaire est ajouté !');
+			comm.$save(function success(){
+				$window.alert('Le commentaire est ajouté !');
 				// raffraichir la page
 				$window.location.reload();
 			}, function error(){
-				alert("Echec lors de la création du commentaire !");
+				$window.alert("Echec lors de la création du commentaire !");
 			});
 			
 		};

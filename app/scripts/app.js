@@ -54,6 +54,11 @@ angular
         controller: 'cloturerAnnonceCtrl',
         controllerAs: 'cloturerAnnonce'
       })
+      .when('/creerAnnonce/', {
+        templateUrl: 'views/creerAnnonce.html',
+        controller: 'creerAnnonceCtrl',
+        controllerAs: 'creerAnnonce'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -8,11 +8,11 @@
  * Controller of the clientApp
  */
 angular.module('leSoukApp')
-    .controller('SeConnecterCtrl', ['$location', '$scope', '$cookies', 'ProfilFactory', 'Connexion',
-      function ($location, $scope, $cookies, ProfilFactory, Connexion) {
+    .controller('SeConnecterCtrl', ['$location', '$scope', '$cookies', 'ProfilFactory', 'Connexion', '$window',
+      function ($location, $scope, $cookies, ProfilFactory, Connexion, $window) {
     $scope.data = {};
 
-    $scope.seConnecterF = function (form) {
+    $scope.seConnecterF = function () {
 			var nomUtil = $scope.data.nomUtil;
             var mdpUtil = $scope.data.password;
         
@@ -28,17 +28,17 @@ angular.module('leSoukApp')
                     
                     $location.path('/compte');
                 }else{
-                    alert("Couple utilisateur/mot de passe incorrect. Réessayez ! ");
+                    $window.alert("Couple utilisateur/mot de passe incorrect. Réessayez ! ");
                 }
 
 				
 			}).catch(function() {
-				alert("L'utilisateur "+nomUtil+" n'existe pas.");
+				$window.alert("L'utilisateur "+nomUtil+" n'existe pas.");
                 /** redirection page principale **/
                 $location.path('/');
             });
         }else{
-            alert("Aucun utilisateur renseigné!");
+            $window.alert("Aucun utilisateur renseigné!");
         }
 
 						
