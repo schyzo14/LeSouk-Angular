@@ -13,10 +13,10 @@ angular.module('leSoukApp')
     AnnonceFactory.get({'idA' : $routeParams.idA}).$promise.then(function(data) {
       $scope.annonce = data;
       console.log(data);
-      UtilisateurFactory.get({'idU' : data.idUCandidat}).$promise.then(function(dataU) {
-        $scope.user = dataU;
-        console.log(dataU);
-      })
+    //  UtilisateurFactory.get({'idU' : data.candidat.id}).$promise.then(function(dataU) {
+        $scope.user = data.candidat;
+    //    console.log(dataU);
+    //  })
     });
 
     $scope.submit = function() {
