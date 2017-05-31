@@ -8,8 +8,8 @@
  * Controller of the clientApp
  */
 angular.module('leSoukApp')
-  .controller('detailAnnonceCtrl', ['$scope', '$routeParams', '$cookies', 'AnnonceFactory', '$location', '$route', '$window', '$templateCache', 'UtilisateurFactory', 'CommenterAnnonceFactory',
-    function ($scope, $routeParams, $cookies, AnnonceFactory, $location, $route, $window, $templateCache, UtilisateurFactory, CommenterAnnonceFactory) {
+  .controller('detailAnnonceCtrl', ['$scope', '$routeParams', '$cookies', 'AnnonceFactory', '$location', '$route', '$window', '$templateCache', 'UtilisateurFactory', 'CommenterAnnonceFactory', '$timeout',
+    function ($scope, $routeParams, $cookies, AnnonceFactory, $location, $route, $window, $templateCache, UtilisateurFactory, CommenterAnnonceFactory, $timeout) {
 
 		var idU = $cookies.get('idU');
         var idCreat = "";
@@ -109,7 +109,19 @@ angular.module('leSoukApp')
                 }
 
                 //Affichage des commentaires de l'annonce
-                $scope.commentaire = data;
+//				var i=0;
+				$scope.commentaire = data;
+				
+				var size = Object.keys(data.listeCommentaires).length;
+				for (var i = 0; i < size; i++) {					
+					$scope.i = i;
+					
+					UtilisateurFactory.get({'idU' : data.listeCommentaires[$scope.i].idU}).$promise.then(function(dataUtil) {						
+						$scope.commentaire.listeCommentaires[$scope.i].pseudo  = dataUtil.pseudo;
+					});
+				
+				}
+
             });
         }else{
             $location.path('/');
