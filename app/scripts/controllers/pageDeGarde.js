@@ -18,17 +18,8 @@ angular.module('leSoukApp')
 		UtilisateurFactory.get({'idU' : $scope.user.id}).$promise.then(function(dataUtil) {
 			$scope.user.nom = dataUtil.nom;
 			$scope.user.prenom = dataUtil.prenom;
-       });
-	   
-		// Evenements crees
-		AnnoncesCreesFactory.query({'idU' : $scope.user.id}).$promise.then(function(data) {
-			$scope.annoncesCrees = data;
-		});
-		
-		// Evenements candidates
-		AnnoncesCandidateesFactory.query({'idU' : $scope.user.id}).$promise.then(function(data) {
-			$scope.annoncesCandidatees = data;
-		});
-		
+			$scope.annoncesCrees = dataUtil.annoncesCreees;
+			$scope.annoncesCandidatees = dataUtil.annoncesCandidatees;
+       });		
 	}
 ]);
