@@ -34,29 +34,33 @@ angular.module('leSoukApp')
 				}
                 
                 if($scope.etatAnnonce==="Active" || $scope.etatAnnonce==="Optionnée") {
-                    
-                    //Affichage des boutons CLoturer et Optionnée que si Active
+                    //Affichage du bouton Prop que si Active
+                    //Affichage du bouton Cloturer que si Active ou si idU=idCreateur
                     if($scope.etatAnnonce==="Active"){
                         $scope.boutonProp=true;
                         $scope.boutonCloturer=true;
                     }else{
                         $scope.boutonProp=false;
-                        $scope.boutonCloturer=true;
+                        if($scope.etatAnnonce==="Optionnée" && (idCreat!==null && idU!==idCreat.toString())){
+                            $scope.boutonCloturer=false;
+                        }else{
+                            $scope.boutonCloturer=true;
+                        }
+                        
                     }
                     
                     $scope.cloturee = false;
-                    if(idU===idCand){
+                    if(idCand!==null && idU===idCand.toString()){
                         /**Utilisateur = Candidat ==> Logo**/
                         $scope.icone = true;
                     }
 
-                    if(idU===idCreat)
+                    if(idCreat!==null && idU===idCreat.toString())
                     {
                         /**Utilisateur = Annonceur ==> Lieu + Prix proposé + Date création du candidat**/
                         /** Récupération éléments Utilisateur candidat**/
                         //GET
                         if(idCand!==null){
-                   //         UtilisateurFactory.get({'idU' : idCand}).$promise.then(function(dataUtil) {
                                 $scope.lieuAnnonce = data.candidat.ville+" - "+data.candidat.pays;
                                 $scope.dateCandidature = data.dateCandidat;
                                 if(data.prixCandidat===null){
@@ -64,8 +68,6 @@ angular.module('leSoukApp')
                                 }else{
                                     $scope.prixProposeAnnonce = data.prixCandidat+" €";
                                 }
-
-                    //        });
 
                             $scope.annonceCoursUtilAnnonceur = true;
                             $scope.aucunCandidat=false;
@@ -91,9 +93,7 @@ angular.module('leSoukApp')
                         /** Récupération éléments Utilisateur annonceur**/
                         //GET
                         if(idCreat!==null){
-//                            UtilisateurFactory.get({'idU' : idCreat}).$promise.then(function(data) {
                                 $scope.annonceur = data.createur.pseudo;
-//                            });
                         }
                     }
                     
@@ -101,9 +101,7 @@ angular.module('leSoukApp')
                         /** Récupération éléments Utilisateur candidat**/
                         //GET
                         if(idCand!==null){
-//                            UtilisateurFactory.get({'idU' : idCand}).$promise.then(function(data) {
                                 $scope.candidat = data.candidat.pseudo;
-//                            });
                         }
                     }
                 }
