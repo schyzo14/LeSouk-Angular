@@ -1,0 +1,23 @@
+<div>
+  <h1>Résultats de la recherche : "{{search}}"</h1><hr />
+  <table class="table table-hover">
+    <thead>
+      <th>Date</th>
+      <th>Nom</th>
+      <th>Description</th>
+      <th></th>
+    </thead>
+    <tbody>
+      <tr ng-repeat="annonce in annonces">
+        <td>{{annonce.dateCreaA}}</td>
+        <td>{{annonce.nomA}}</td>
+        <td>{{annonce.descriptionA}}</td>
+        <td>
+          <a ng-href="#!/detailAnnonce/{{annonce.idA}}">
+            <button type="button" class="btn btn-primary">Détail</button>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

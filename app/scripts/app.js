@@ -59,6 +59,11 @@ angular
         controller: 'creerAnnonceCtrl',
         controllerAs: 'creerAnnonce'
       })
+      .when('/recherche/:search', {
+        templateUrl: 'views/recherche.html',
+        controller: 'RechercheCtrl',
+        controllerAs: 'recherche'
+      })
       .otherwise({
         redirectTo: '/'
       });
