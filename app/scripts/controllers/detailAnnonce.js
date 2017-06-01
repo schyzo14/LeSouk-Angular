@@ -49,7 +49,6 @@ angular.module('leSoukApp')
                         
                     }
                     
-                    $scope.cloturee = false;
                     if(idCand!==null && idU===idCand.toString()){
                         /**Utilisateur = Candidat ==> Logo**/
                         $scope.icone = true;
@@ -70,11 +69,8 @@ angular.module('leSoukApp')
                                 }
 
                             $scope.annonceCoursUtilAnnonceur = true;
-                            $scope.aucunCandidat=false;
                         }else{
-                            console.log("aucun candidat");
                             //Aucun candidat
-                            $scope.annonceCoursUtilAnnonceur = false;
                             $scope.aucunCandidat=true;
                         }
 
@@ -82,18 +78,15 @@ angular.module('leSoukApp')
                     }
                 }else{
                     //Annonce cloturee
-                    $scope.icone=false;
-                    $scope.annonceCoursUtilAnnonceur = false;
-                    $scope.aucunCandidat=false;
                     $scope.cloturee = true;
-                    $scope.boutonCloturer=false;
-                    $scope.boutonProp=false;
                     
                     if(idCand!==null && idU===idCand.toString()){
                         /** Récupération éléments Utilisateur annonceur**/
                         //GET
                         if(idCreat!==null){
                                 $scope.annonceur = data.createur.pseudo;
+                            $scope.clotureeAnnonceur = true;
+                            
                         }
                     }
                     
@@ -102,6 +95,9 @@ angular.module('leSoukApp')
                         //GET
                         if(idCand!==null){
                                 $scope.candidat = data.candidat.pseudo;
+                            $scope.clotureeCandidat = true;
+                        }else{
+                            $scope.clotureeNoCandidat = true;
                         }
                     }
                 }

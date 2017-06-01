@@ -32,8 +32,9 @@
                                         <h3 class="panel-title">Annonce Cloturée</h3>
                                     </div>
                                     <div class="panel-body">
-                                        <label>Candidat : {{candidat}}</label><br/>
-                                        <label>Annonceur : {{annonceur}}</label>
+                                        <label ng-show="clotureeCandidat">Candidat : {{candidat}}</label><br/>
+                                        <label ng-show="clotureeAnnonceur">Annonceur : {{annonceur}}</label>
+                                        <label ng-show="clotureeNoCandidat">Aucun candidat !</label>
                                     </div>
                                 </div>
                             </td>
