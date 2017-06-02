@@ -84,7 +84,7 @@ angular.module('leSoukApp')
                         /** Récupération éléments Utilisateur annonceur**/
                         //GET
                         if(idCreat!==null){
-                                $scope.annonceur = data.createur.pseudo;
+                                $scope.annonceur = data.createur.nom+"  "+data.createur.prenom+" : "+data.createur.mail;
                             $scope.clotureeAnnonceur = true;
                             
                         }
@@ -94,7 +94,7 @@ angular.module('leSoukApp')
                         /** Récupération éléments Utilisateur candidat**/
                         //GET
                         if(idCand!==null){
-                                $scope.candidat = data.candidat.pseudo;
+                                $scope.candidat = data.candidat.nom+" "+data.candidat.prenom+" : "+data.candidat.mail;
                             $scope.clotureeCandidat = true;
                         }else{
                             $scope.clotureeNoCandidat = true;
