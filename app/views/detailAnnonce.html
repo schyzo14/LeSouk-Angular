@@ -64,7 +64,6 @@
                     </div>
                     <thead>
                         <tr>
-                            <th>#</th>
 							<th>Pseudo</th>
                             <th>Date</th>
                             <th>Commentaires</th>
@@ -72,7 +71,6 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="commentaire in commentaire.listeCommentaires" >
-                            <td>{{commentaire.idC}}</td>
 							<td>{{commentaire.idU}} - {{commentaire.pseudo}}</td>
                             <td>{{commentaire.dateCreation}}</td>
                             <td>{{commentaire.texte}}</td>
