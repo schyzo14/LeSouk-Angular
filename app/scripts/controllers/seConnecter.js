@@ -8,8 +8,8 @@
  * Controller of the clientApp
  */
 angular.module('leSoukApp')
-    .controller('SeConnecterCtrl', ['$http', '$location', '$scope', '$cookies', 'ProfilFactory', 'Connexion', '$window', 'AuthentificationFactory',
-      function ($http, $location, $scope, $cookies, ProfilFactory, Connexion, $window, AuthentificationFactory) {
+    .controller('SeConnecterCtrl', ['$rootScope', '$http', '$location', '$scope', '$cookies', 'ProfilFactory', 'Connexion', '$window', 'AuthentificationFactory',
+      function ($rootScope, $http, $location, $scope, $cookies, ProfilFactory, Connexion, $window, AuthentificationFactory) {
     $scope.data = {};
 
     $scope.seConnecterF = function () {
@@ -30,22 +30,27 @@ angular.module('leSoukApp')
 
 			$http.get('http://localhost:8080/api/seConnecter', requestParams).then(function (response) {
 				this.user = response.data;
-				return this.user;
-			}.bind(this));
-			
-            //GET
-			ProfilFactory.get({'pseudoU' : nomUtil}).$promise.then(function(data) {
+				$rootScope.authenticated = true;
+				
+				ProfilFactory.get({'pseudoU' : nomUtil}).$promise.then(function(data) {
 
 					$cookies.put('idU', data.id);
 					Connexion.setUser(data.id);
 					
 					$location.path('/compte');
 				
-			}).catch(function() {
-				$window.alert("L'utilisateur "+nomUtil+" n'existe pas.");
-				/** redirection page principale **/
-				$location.path('/');
-			});
+				}).catch(function() {
+					$window.alert("L'utilisateur "+nomUtil+" n'existe pas.");
+					/** redirection page principale **/
+					$location.path('/');
+				});
+				
+			}.bind(this));
+			
+			angular.isDefined(this.user);
+
+            //GET
+			
 
 				
         }else{
