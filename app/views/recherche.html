@@ -4,7 +4,7 @@
     <button type="button" class="btn btn-primary" ng-click="trier()">Trier par localisation</button>
   </p>
   <table class="table table-hover">
-    <thead>
+    <thead ng-if="annonces.length">
       <th>Date</th>
       <th>Nom</th>
       <th>Description</th>
@@ -21,5 +21,8 @@
         </td>
       </tr>
     </tbody>
+	<thead ng-if="!annonces.length">
+		<tr><th>Aucun résultat</th></tr>
+	</thead>
   </table>
 </div>

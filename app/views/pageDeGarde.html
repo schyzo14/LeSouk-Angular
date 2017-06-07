@@ -11,8 +11,8 @@
                 <div class="col-lg-9">
 					<h3 class="panel-title">Mes Annonces</h3>
 				</div>
-            </div>
-            <thead>
+            </div>			
+            <thead ng-if="annoncesCrees.length">
 				<tr>
 					<th>Id</th>
 					<th>Date</th>
@@ -37,6 +37,9 @@
 					</td>
 				</tr>
 			</tbody>
+			<thead ng-if="!annoncesCrees.length">
+				<tr><th>Vous n'avez pas d'annonce !</th></tr>
+			</thead>
 		</table>
 	</div>
   </p>
@@ -49,7 +52,7 @@
 					<h3 class="panel-title">Mes Candidatures</h3>
 				</div>
             </div>
-            <thead>
+            <thead ng-if="annoncesCandidatees.length">
                 <tr>
 					<th>Id</th>
 					<th>Date</th>
@@ -73,6 +76,9 @@
 					</td>
 				</tr>
 			</tbody>
+			<thead ng-if="!annoncesCandidatees.length">
+				<tr><th>Vous n'avez pas de candidature !</th></tr>
+			</thead>
 		</table>
 	</div>
   </p>

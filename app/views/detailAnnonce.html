@@ -62,7 +62,7 @@
                     <div class="panel-heading">
                         <h3 class="panel-title">Commentaire(s)</h3>
                     </div>
-                    <thead>
+                    <thead ng-if="commentaire.listeCommentaires.length">
                         <tr>
 							<th>Pseudo</th>
                             <th>Date</th>
@@ -76,6 +76,9 @@
                             <td>{{commentaire.texte}}</td>
                         </tr>
                     </tbody>
+					<thead ng-if="!commentaire.listeCommentaires.length">
+						<tr><th>Aucun commentaire</th></tr>
+					</thead>
                 </table>
             </div>
 
