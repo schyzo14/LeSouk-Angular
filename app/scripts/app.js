@@ -73,7 +73,7 @@ angular
         if (prevRoute.access !== undefined) {
 
         // if route requires auth and user is not logged in
-        if (!prevRoute.access.isFreeAccess && ($cookies.get('idU') === null)) {
+        if (!prevRoute.access.isFreeAccess && (($cookies.get('idU') === undefined))) {
           // redirects to index
           $location.path('/');
         }

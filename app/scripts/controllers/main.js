@@ -13,10 +13,11 @@ angular.module('leSoukApp')
 
 		$scope.data = {};
         //Si connecté affichage de la page de garde sinon retour sur la page de connexion
-	   if($cookies.get('idU')!==undefined){
+		if(($cookies.get('idU') !== undefined)){
            $location.path('/compte');
-       }else{
-           $location.path('/');
-       }
+		} else {
+            //Non connecté
+            $location.path('/');
+        }
 	}
 ]);

@@ -11,6 +11,9 @@ angular.module('leSoukApp')
   .controller('creerAnnonceCtrl', ['$scope', '$location', '$cookies', 'creerAnnonceFactory','$window', 'UtilisateurFactory',
       function ($scope, $location, $cookies, creerAnnonceFactory, $window, UtilisateurFactory) {
           
+		// Si connecté
+		if(($cookies.get('idU') !== undefined)){
+		  
           //Gestion du bouton créer
           $scope.submit = function() {
             if($cookies.get('idU')!==undefined){
@@ -47,5 +50,10 @@ angular.module('leSoukApp')
               $location.path('/');
             }
           };
+		  
+		} else {
+            //Non connecté
+            $location.path('/');
+        }
           
   }]);

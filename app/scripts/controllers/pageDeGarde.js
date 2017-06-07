@@ -12,7 +12,7 @@ angular.module('leSoukApp')
 	function ($scope, $cookies, AnnoncesCreesFactory, AnnoncesCandidateesFactory, UtilisateurFactory, $location) {
 
 		// Si connecté
-		if($cookies.get('idU')!== undefined){
+		if(($cookies.get('idU') !== undefined)){
 	
 			$scope.user = {};
 			$scope.user.id = $cookies.get('idU');
