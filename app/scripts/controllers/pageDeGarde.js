@@ -8,8 +8,8 @@
  * Controller of the leSoukApp
  */
 angular.module('leSoukApp')
-  .controller('PageDeGardeCtrl', ['$scope', '$cookies', 'AnnoncesCreesFactory', 'AnnoncesCandidateesFactory', 'UtilisateurFactory', '$location', 
-	function ($scope, $cookies, AnnoncesCreesFactory, AnnoncesCandidateesFactory, UtilisateurFactory, $location) {
+  .controller('PageDeGardeCtrl', ['$scope', '$cookies', 'UtilisateurFactory', '$location', 
+	function ($scope, $cookies, UtilisateurFactory, $location) {
 
 		// Si connecté
 		if(($cookies.get('idU') !== undefined)){
