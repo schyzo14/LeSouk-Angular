@@ -60,7 +60,7 @@ angular.module('leSoukApp')
                         /** Récupération éléments Utilisateur candidat**/
                         //GET
                         if(idCand!==null){
-                                $scope.lieuAnnonce = data.candidat.ville+" - "+data.candidat.pays;
+                                $scope.lieuAnnonce = data.candidat.city+" - "+data.candidat.country;
                                 $scope.dateCandidature = data.dateCandidat;
                                 if(data.prixCandidat===null){
                                     $scope.prixProposeAnnonce="Aucun prix";
