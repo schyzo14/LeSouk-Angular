@@ -1,11 +1,13 @@
 <div>
   <h1>Résultats de la recherche : "{{search}}"</h1><hr />
+  <p>
+    <button type="button" class="btn btn-primary" ng-click="trier()">Trier par localisation</button>
+  </p>
   <table class="table table-hover">
     <thead>
       <th>Date</th>
       <th>Nom</th>
       <th>Description</th>
-      <th></th>
     </thead>
     <tbody>
       <tr ng-repeat="annonce in annonces">
