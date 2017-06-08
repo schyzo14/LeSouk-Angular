@@ -8,17 +8,17 @@
  * Controller of the leSoukApp
  */
 angular.module('leSoukApp')
-  .controller('detailAnnonceCtrl', ['$scope', '$routeParams', '$cookies', 'AnnonceFactory', '$location', '$route', '$window', '$templateCache', 'UtilisateurFactory', 'CommenterAnnonceFactory', 
-    function ($scope, $routeParams, $cookies, AnnonceFactory, $location, $route, $window, $templateCache, UtilisateurFactory, CommenterAnnonceFactory) {
+  .controller('detailAnnonceCtrl', ['$scope', '$routeParams', '$cookies', '$q', 'AnnonceFactory', '$location', '$route', '$window', '$templateCache', 'UtilisateurFactory', 'CommenterAnnonceFactory',
+    function ($scope, $routeParams, $cookies, $q, AnnonceFactory, $location, $route, $window, $templateCache, UtilisateurFactory, CommenterAnnonceFactory) {
 
 		// Si connecté
 		if(($cookies.get('idU') !== undefined)){
-	
+
 			var idU = $cookies.get('idU');
 			var idCreat = "";
 			var idCand = "";
 			var idA = $routeParams.idA;
-			
+
 				/** Récupération éléments annonce**/
 				//GET
 				AnnonceFactory.get({'idA' : idA}).$promise.then(function(data) {
@@ -28,13 +28,15 @@ angular.module('leSoukApp')
 					$scope.prixAnnonce = data.prixA+" €";
 					$scope.dateCreatAnnonce = data.dateCreaA;
 					$scope.etatAnnonce = data.etatA;
+          $scope.commentaires = data.listeCommentaires;
+
 					idCreat = data.createur.id;
 					if (data.candidat !== null) {
 						idCand = data.candidat.id;
 					} else {
 						idCand = null;
 					}
-					
+
 					if($scope.etatAnnonce==="Active" || $scope.etatAnnonce==="Optionnée") {
 						//Affichage du bouton Prop que si Active
 						//Affichage du bouton Cloturer que si Active ou si idU=idCreateur
@@ -48,9 +50,9 @@ angular.module('leSoukApp')
 							}else{
 								$scope.boutonCloturer=true;
 							}
-							
+
 						}
-						
+
 						if(idCand!==null && idU===idCand.toString()){
 							/**Utilisateur = Candidat ==> Logo**/
 							$scope.icone = true;
@@ -81,17 +83,17 @@ angular.module('leSoukApp')
 					}else{
 						//Annonce cloturee
 						$scope.cloturee = true;
-						
+
 						if(idCand!==null && idU===idCand.toString()){
 							/** Récupération éléments Utilisateur annonceur**/
 							//GET
 							if(idCreat!==null){
 									$scope.annonceur = data.createur.nom+"  "+data.createur.prenom+" : "+data.createur.mail;
 								$scope.clotureeAnnonceur = true;
-								
+
 							}
 						}
-						
+
 						if(idCreat!==null && idU===idCreat.toString()){
 							/** Récupération éléments Utilisateur candidat**/
 							//GET
@@ -105,31 +107,29 @@ angular.module('leSoukApp')
 					}
 
 					//Affichage des commentaires de l'annonce
-					$scope.commentaire = data;
-					
-					var size = Object.keys(data.listeCommentaires).length;
-					for (var i = 0; i < size; i++) {					
-						$scope.i = i;
-						
-						UtilisateurFactory.get({'idU' : data.listeCommentaires[$scope.i].idU}).$promise.then(function(dataUtil) {						
-							$scope.commentaire.listeCommentaires[$scope.i].pseudo  = dataUtil.pseudo;
-						});
-					
-					}
-
+          var j = 0;
+          var promises = [];
+          for(var i = 0; i < $scope.commentaires.length; i++) {
+            var promise = UtilisateurFactory.get({'idU' : $scope.commentaires[i].idU}).$promise.then(function(dataUtil) {
+              $scope.commentaires[j].pseudo = dataUtil.pseudo;
+              j++;
+            });
+            promises.push(promise);
+          }
+          $q.all(promises);
 				});
-			
-			
+
+
 			// Commenter une annonce
 			$scope.commenter = function() {
-				
+
 				// Création de la variable Commentaire
 				var comm = new CommenterAnnonceFactory({
 					idA : $scope.idAnnonce,
 					idU: idU,
 					texte: $scope.comment
 				});
-				
+
 				// on fait un post pour créer le commentaire
 				comm.$save(function success(){
 					// raffraichir la page
@@ -137,9 +137,9 @@ angular.module('leSoukApp')
 				}, function error(){
 					$window.alert("Echec lors de la création du commentaire !");
 				});
-				
+
 			};
-		
+
 		} else {
             //Non connecté
             $location.path('/');

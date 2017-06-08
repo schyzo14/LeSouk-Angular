@@ -1,89 +1,89 @@
 <div>
-    <form name="detailAnnonceForm">
-        <div ng-controller="detailAnnonceCtrl">
-            <!--Panneau pour le détail de l'annonce-->
-            <div class="panel panel-primary">
-                <table class="table table-striped table-condensed">
-                    <div class="panel-heading">
-                        <div class="panel-title">
-                            <label>Annonce</label>
-                            <a ng-href="#!/cloturerAnnonce/{{idAnnonce}}">
-                              <button type="button" class="btn btn-success pull-right" ng-show="boutonCloturer">Clôturer</button><br />
-                            </a>
-                        </div>
-                    </div>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label>Nom : {{nomAnnonce}}</label><br/>
-                                <label>Description : {{descrAnnonce}}</label><br/>
-                                <label>Prix : {{prixAnnonce}}</label><br/>
-                                <label>Date de création : {{dateCreatAnnonce}}</label><br/>
-                                <br/>
-                                <label ng-show="annonceCoursUtilAnnonceur">Prix proposé : {{prixProposeAnnonce}}</label><br/>
-                                <label ng-show="annonceCoursUtilAnnonceur">Lieu : {{lieuAnnonce}}</label><br/>
-                                <label ng-show="annonceCoursUtilAnnonceur">Date de candidature : {{dateCandidature}}</label><br/>
-                                <label ng-show="aucunCandidat">Pas de candidat, c'est trop pourri!</label><br/>
-                                <label>Etat : {{etatAnnonce}}</label><br/>
-                            </td>
-                            <td>
-                                <div ng-show="cloturee" class="panel panel-default pull-right">
-                                    <div class="panel-heading">
-                                        <h3 class="panel-title">Annonce Cloturée</h3>
-                                    </div>
-                                    <div class="panel-body">
-                                        <label ng-show="clotureeCandidat">Candidat : {{candidat}}</label><br/>
-                                        <label ng-show="clotureeAnnonceur">Annonceur : {{annonceur}}</label>
-                                        <label ng-show="clotureeNoCandidat">Aucun candidat !</label>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                 <img ng-show="icone" src="images/annonceEC.png" alt="annonce">
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+  <form name="detailAnnonceForm">
+    <div ng-controller="detailAnnonceCtrl">
+      <!--Panneau pour le détail de l'annonce-->
+      <div class="panel panel-primary">
+        <table class="table table-striped table-condensed">
+          <div class="panel-heading">
+            <div class="panel-title">
+              <label>Annonce</label>
+              <a ng-href="#!/cloturerAnnonce/{{idAnnonce}}">
+                <button type="button" class="btn btn-success pull-right" ng-show="boutonCloturer">Clôturer</button><br />
+              </a>
             </div>
-            <a ng-href="#!/propositionAchat/{{idAnnonce}}">
-              <button type="button" class="btn btn-danger pull-right" ng-show="boutonProp">Faire une proposition d'achat</button><br/><br/>
-            </a>
+          </div>
+          <tbody>
+            <tr>
+              <td>
+                <label>Nom : {{nomAnnonce}}</label><br/>
+                <label>Description : {{descrAnnonce}}</label><br/>
+                <label>Prix : {{prixAnnonce}}</label><br/>
+                <label>Date de création : {{dateCreatAnnonce}}</label><br/>
+                <br/>
+                <label ng-show="annonceCoursUtilAnnonceur">Prix proposé : {{prixProposeAnnonce}}</label><br/>
+                <label ng-show="annonceCoursUtilAnnonceur">Lieu : {{lieuAnnonce}}</label><br/>
+                <label ng-show="annonceCoursUtilAnnonceur">Date de candidature : {{dateCandidature}}</label><br/>
+                <label ng-show="aucunCandidat">Pas de candidat, c'est trop pourri!</label><br/>
+                <label>Etat : {{etatAnnonce}}</label><br/>
+              </td>
+              <td>
+                <div ng-show="cloturee" class="panel panel-default pull-right">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Annonce Cloturée</h3>
+                  </div>
+                  <div class="panel-body">
+                    <label ng-show="clotureeCandidat">Candidat : {{candidat}}</label><br/>
+                    <label ng-show="clotureeAnnonceur">Annonceur : {{annonceur}}</label>
+                    <label ng-show="clotureeNoCandidat">Aucun candidat !</label>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <img ng-show="icone" src="images/annonceEC.png" alt="annonce">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <a ng-href="#!/propositionAchat/{{idAnnonce}}">
+        <button type="button" class="btn btn-danger pull-right" ng-show="boutonProp">Faire une proposition d'achat</button><br/><br/>
+      </a>
 
-            <!--TextArea pour ajouter un commentaire-->
-            <div class="form-group">
-                <label for="comment">Ecrire un commentaire:</label>
-                <textarea class="form-control" rows="2" id="comment" ng-model="comment"></textarea><br/>
-                <button type="button" class="btn btn-success pull-right" ng-click="commenter(this)">Envoyer</button><br/><br/>
-            </div>
+      <!--TextArea pour ajouter un commentaire-->
+      <div class="form-group">
+        <label for="comment">Ecrire un commentaire:</label>
+        <textarea class="form-control" rows="2" id="comment" ng-model="comment"></textarea><br/>
+        <button type="button" class="btn btn-success pull-right" ng-click="commenter(this)">Envoyer</button><br/><br/>
+      </div>
 
-            <!--Panneau pour les commentaires de l'annonce-->
-            <div class="panel panel-primary">
-                <table class="table table-striped table-condensed">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Commentaire(s)</h3>
-                    </div>
-                    <thead ng-if="commentaire.listeCommentaires.length">
-                        <tr>
-							<th>Pseudo</th>
-                            <th>Date</th>
-                            <th>Commentaires</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="commentaire in commentaire.listeCommentaires" >
-							<td>{{commentaire.idU}} - {{commentaire.pseudo}}</td>
-                            <td>{{commentaire.dateCreation}}</td>
-                            <td>{{commentaire.texte}}</td>
-                        </tr>
-                    </tbody>
-					<thead ng-if="!commentaire.listeCommentaires.length">
-						<tr><th>Aucun commentaire</th></tr>
-					</thead>
-                </table>
-            </div>
+      <!--Panneau pour les commentaires de l'annonce-->
+      <div class="panel panel-primary">
+        <table class="table table-striped table-condensed">
+          <div class="panel-heading">
+            <h3 class="panel-title">Commentaire(s)</h3>
+          </div>
+          <thead ng-if="commentaires.length">
+            <tr>
+              <th>Pseudo</th>
+              <th>Date</th>
+              <th>Commentaires</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="commentaire in commentaires" >
+              <td>{{commentaire.idU}} - {{commentaire.pseudo}}</td>
+              <td>{{commentaire.dateCreation}}</td>
+              <td>{{commentaire.texte}}</td>
+            </tr>
+          </tbody>
+          <thead ng-if="!commentaires.length">
+            <tr><th>Aucun commentaire</th></tr>
+          </thead>
+        </table>
+      </div>
 
-        </div>
+    </div>
 
-    </form>
+  </form>
 
 </div>
