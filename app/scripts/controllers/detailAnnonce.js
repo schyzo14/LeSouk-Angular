@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc function
- * @name clientApp.controller:detailAnnonceCtrl
+ * @name leSoukApp.controller:detailAnnonceCtrl
  * @description
- * # MainCtrl
- * Controller of the clientApp
+ * # detailAnnonceCtrl
+ * Controller of the leSoukApp
  */
 angular.module('leSoukApp')
   .controller('detailAnnonceCtrl', ['$scope', '$routeParams', '$cookies', 'AnnonceFactory', '$location', '$route', '$window', '$templateCache', 'UtilisateurFactory', 'CommenterAnnonceFactory', 
@@ -19,7 +19,6 @@ angular.module('leSoukApp')
 			var idCand = "";
 			var idA = $routeParams.idA;
 			
-			if(idU!==undefined){
 				/** Récupération éléments annonce**/
 				//GET
 				AnnonceFactory.get({'idA' : idA}).$promise.then(function(data) {
@@ -106,7 +105,6 @@ angular.module('leSoukApp')
 					}
 
 					//Affichage des commentaires de l'annonce
-	//				var i=0;
 					$scope.commentaire = data;
 					
 					var size = Object.keys(data.listeCommentaires).length;
@@ -120,9 +118,6 @@ angular.module('leSoukApp')
 					}
 
 				});
-			}else{
-				$location.path('/');
-			}
 			
 			
 			// Commenter une annonce
@@ -137,7 +132,6 @@ angular.module('leSoukApp')
 				
 				// on fait un post pour créer le commentaire
 				comm.$save(function success(){
-					$window.alert('Le commentaire est ajouté !');
 					// raffraichir la page
 					$window.location.reload();
 				}, function error(){

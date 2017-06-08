@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc function
- * @name clientApp.controller:MenuCtrl
+ * @name leSoukApp.controller:creerAnnonceCtrl
  * @description
- * # MenuCtrl
- * Controller of the clientApp
+ * # creerAnnonceCtrl
+ * Controller of the leSoukApp
  */
 angular.module('leSoukApp')
   .controller('creerAnnonceCtrl', ['$scope', '$location', '$cookies', 'creerAnnonceFactory','$window', 'UtilisateurFactory',
@@ -16,6 +16,7 @@ angular.module('leSoukApp')
 		  
           //Gestion du bouton créer
           $scope.submit = function() {
+              //Si connecté et que tous les champs ont été renseignés
             if($cookies.get('idU')!==undefined){
               if($scope.nomAnnonce!==undefined && $scope.comment!==undefined && $scope.prixAnnonce!==undefined){
 				  
@@ -32,7 +33,6 @@ angular.module('leSoukApp')
 				
 					 // on fait un post pour créer l'annonce
 					 annonce.$save(function success(){
-						$window.alert('Annonce ajoutée !');
 						// renvoyer sur la page de garde
 						$location.path('/compte');
 					 }, function error(){

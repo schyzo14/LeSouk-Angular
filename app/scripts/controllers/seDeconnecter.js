@@ -11,9 +11,11 @@ angular.module('leSoukApp')
   .controller('SeDeconnecterCtrl', ['$location', '$scope', '$cookies', 'Connexion', '$http', '$rootScope',
     function ($location, $scope, $cookies, Connexion, $http, $rootScope) {
 		
+        //Suppression du cookies
 		$cookies.remove('idU');
 		Connexion.setUser(null);
 
+        //Mise à jour côté serveur de l'authentification
 		$http.post('http://localhost:8080/logout', {}).finally(function () {
 			delete this.user;
 			$rootScope.authenticated = false;
@@ -22,6 +24,7 @@ angular.module('leSoukApp')
 			$cookies.remove('JSESSIONID');
 		}.bind(this));
 		
+        //Redirection sur la page de garde
 		$location.path('/');
 		
     }]);

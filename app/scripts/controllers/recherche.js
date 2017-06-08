@@ -18,7 +18,6 @@ angular.module('leSoukApp')
 
 			RechercherAnnoncesFactory.query({'idU' : $cookies.get('idU'), motsCles : $scope.search}).$promise.then(function(data) {
 			  $scope.annonces = data;
-			  console.log(data);
 			});
 
 			$scope.trier = function() {

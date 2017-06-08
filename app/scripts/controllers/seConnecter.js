@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc function
- * @name clientApp.controller:SeConnecterCtrl
+ * @name leSoukApp.controller:SeConnecterCtrl
  * @description
  * # SeConnecterCtrl
- * Controller of the clientApp
+ * Controller of the leSoukApp
  */
 angular.module('leSoukApp')
     .controller('SeConnecterCtrl', ['$rootScope', '$http', '$location', '$scope', '$cookies', 'ProfilFactory', 'Connexion', '$window',
@@ -13,6 +13,7 @@ angular.module('leSoukApp')
     $scope.data = {};
 
     $scope.seConnecterF = function () {
+        //Récupération des champs saisis
 		var nomUtil = $scope.data.nomUtil;
 		var mdpUtil = $scope.data.password;
 		
@@ -28,6 +29,7 @@ angular.module('leSoukApp')
 			};
 			var requestParams = {headers: headers};
 
+            //Test de l'authentification côté serveur
 			$http.get('http://localhost:8080/api/seConnecter', requestParams)
 				.then(function (response) {
 					this.user = response.data;

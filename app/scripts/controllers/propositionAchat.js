@@ -18,7 +18,6 @@ angular.module('leSoukApp')
 
 			AnnonceFactory.get({'idA' : idA}).$promise.then(function(data) {
 			  $scope.annonce = data;
-			  console.log(data);
 			});
 
 			$scope.submit = function() {
@@ -26,11 +25,9 @@ angular.module('leSoukApp')
 				  UtilisateurFactory.get({'idU' : $cookies.get('idU')}).$promise.then(function(dataUtil) {
 					$scope.annonce.prixCandidat = $scope.prixCandidat;
 					$scope.annonce.candidat = dataUtil;
-					console.log("prix saved : " + $scope.annonce.prixCandidat);
 
 					CandidaterAnnonceFactory.update({'idA' : $scope.annonce.idA}, $scope.annonce)
 					.$promise.then(function() {
-					  console.log("Enregistrement good");
 					  $window.location.href = '#!/detailAnnonce/'+idA;
 					});
 				  });

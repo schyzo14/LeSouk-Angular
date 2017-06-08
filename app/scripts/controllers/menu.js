@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc function
- * @name clientApp.controller:MenuCtrl
+ * @name leSoukApp.controller:MenuCtrl
  * @description
  * # MenuCtrl
- * Controller of the clientApp
+ * Controller of the leSoukApp
  */
 angular.module('leSoukApp')
   .controller('MenuCtrl', ['$scope', '$window', '$cookies', 'Connexion',
