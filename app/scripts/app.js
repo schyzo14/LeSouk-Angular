@@ -29,11 +29,6 @@ angular
         controller: 'PageDeGardeCtrl',
         controllerAs: 'pageDeGarde'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
       .when('/detailAnnonce/:idA', {
         templateUrl: 'views/detailAnnonce.html',
         controller: 'detailAnnonceCtrl',

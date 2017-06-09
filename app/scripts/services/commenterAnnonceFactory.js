@@ -1,11 +1,12 @@
 'use strict';
 
 /**
+ * Ajouter un commentaire à une annonce idA
  * @ngdoc service
- * @name clientApp.commenterAnnonceFactory
+ * @name leSoukApp.CommenterAnnonceFactory
  * @description
- * # commenterAnnonceFactory
- * Factory in the clientApp.
+ * # CommenterAnnonceFactory
+ * Factory in the leSoukApp.
  */
 angular.module('leSoukApp')
   .factory('CommenterAnnonceFactory', function ($resource) {

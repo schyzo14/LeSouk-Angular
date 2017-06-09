@@ -17,7 +17,7 @@ angular.module('leSoukApp')
 			$scope.user = {};
 			$scope.user.id = $cookies.get('idU');
 			
-			// Utilisateur
+			// Récupération de l'Utilisateur avec son idU
 			UtilisateurFactory.get({'idU' : $scope.user.id}).$promise.then(function(dataUtil) {
 				$scope.user.nom = dataUtil.nom;
 				$scope.user.prenom = dataUtil.prenom;

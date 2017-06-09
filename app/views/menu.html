@@ -1,10 +1,14 @@
 <div ng-controller="MenuCtrl" class="collapse navbar-collapse">
-  <ul class="nav navbar-nav navbar-right" data-ng-hide="user.isConnected()">
-  </ul>
+
+	<!-- S'il n'y a pas d'utilisateur connecté -->
+  <ul class="nav navbar-nav navbar-right" data-ng-hide="user.isConnected()"></ul>
+  
+  <!-- S'il y a un utilisateur connecté -->
   <ul class="nav navbar-nav navbar-right" data-ng-show="user.isConnected()">
     <li><a href="#!/creerAnnonce"><span class="glyphicon glyphicon-plus" /> Créer une annonce</a></li>
     <li><a href="#!/compte"><span class="glyphicon glyphicon-check" />Ma page de garde</a></li>
     <li><a href="#!/seDeconnecter"><span class="glyphicon glyphicon-log-in" /> Déconnexion</a></li>
+	<!-- Champ de recherche d'une annonce -->
     <form ng-submit="submit()">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Rechercher..." ng-model="search">

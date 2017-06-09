@@ -1,11 +1,12 @@
 'use strict';
 
 /**
+ * Récupérer un utilisateur avec son idU
  * @ngdoc service
- * @name clientApp.AnnonceFactory
+ * @name leSoukApp.UtilisateurFactory
  * @description
- * # AnnonceFactory
- * Factory in the clientApp.
+ * # UtilisateurFactory
+ * Factory in the leSoukApp.
  */
 angular.module('leSoukApp')
   .factory('UtilisateurFactory', function ($resource) {

@@ -106,21 +106,27 @@ angular.module('leSoukApp')
 						}
 					}
 
-					//Affichage des commentaires de l'annonce
+					/** Affichage des commentaires de l'annonce **/
           var j = 0;
           var promises = [];
+		  // Pour chaque commentaire
           for(var i = 0; i < $scope.commentaires.length; i++) {
+			  // on fait un get sur l'id de l'utilisateur
             var promise = UtilisateurFactory.get({'idU' : $scope.commentaires[i].idU}).$promise.then(function(dataUtil) {
+				// on met le pseudo au bon commentaire
               $scope.commentaires[j].pseudo = dataUtil.pseudo;
               j++;
             });
+			// on ajoute la promise à la liste des promises à exécuter
             promises.push(promise);
           }
+		  // on exécute les promises
           $q.all(promises);
 				});
 
 
-			// Commenter une annonce
+				
+			/** Commenter une annonce **/
 			$scope.commenter = function() {
 
 				// Création de la variable Commentaire
