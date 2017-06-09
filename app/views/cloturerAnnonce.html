@@ -3,25 +3,30 @@
     <label>Proposition d'achat<label>
   </div></div>
   <form class="form-horizontal" ng-submit="submit()">
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="nom">Nom :</label>
-      <div class="col-sm-9"><p class="form-control-static">{{user.nom}}</p></div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="prenom">Prénom :</label>
-      <div class="col-sm-9"><p class="form-control-static">{{user.prenom}}</p></div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="email">E-Mail :</label>
-      <div class="col-sm-9"><p class="form-control-static">{{user.mail}}</p></div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="prixD">Prix demandé (€) :</label>
-      <div class="col-sm-9"><p class="form-control-static">{{annonce.prixA}}</p></div>
-    </div>
-    <div class="form-group">
-      <label class="control-label col-sm-3" for="prixP">Prix proposé (€) :</label>
-      <div class="col-sm-9"><p class="form-control-static">{{annonce.prixCandidat}}</p></div>
+    <span ng-if='user.nom !== undefined'>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="nom">Nom :</label>
+        <div class="col-sm-9"><p class="form-control-static">{{user.nom}}</p></div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="prenom">Prénom :</label>
+        <div class="col-sm-9"><p class="form-control-static">{{user.prenom}}</p></div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="email">E-Mail :</label>
+        <div class="col-sm-9"><p class="form-control-static">{{user.mail}}</p></div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="prixD">Prix demandé (€) :</label>
+        <div class="col-sm-9"><p class="form-control-static">{{annonce.prixA}}</p></div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="prixP">Prix proposé (€) :</label>
+        <div class="col-sm-9"><p class="form-control-static">{{annonce.prixCandidat}}</p></div>
+      </div>
+    </span>
+    <div ng-if='user.nom === undefined' class="col-sm-9">
+      Il n'y a pas de candidat pour cette annonce.
     </div>
     <div class="form-group">
       <div class="col-sm-offset-6 col-sm-12">
