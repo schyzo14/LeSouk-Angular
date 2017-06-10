@@ -12,7 +12,9 @@ angular.module('leSoukApp')
 function ($scope, $window, $cookies, Connexion) {
   $scope.user = Connexion;
 
+  //Fonction de recherche
   $scope.submit = function() {
+    //Si mot-clé saisi
     if($scope.search) {
       $window.location.href = '#!/recherche/'+$scope.search;
     } else {

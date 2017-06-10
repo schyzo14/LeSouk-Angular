@@ -3,23 +3,28 @@
     <label>Faire une proposition d'achat</label>
   </div></div>
   <form class="form-horizontal" ng-submit="submit()">
+    <!-- Produit -->
     <div class="form-group">
       <label class="control-label col-sm-3" for="produit">Produit :</label>
       <div class="col-sm-9"><p class="form-control-static">{{annonce.nomA}}</p></div>
     </div>
+    <!-- Prix -->
     <div class="form-group">
       <label class="control-label col-sm-3"for="prix">Prix (€) :</label>
       <div class="col-sm-9"><p class="form-control-static">{{annonce.prixA}}</p></div>
     </div>
+    <!-- Proposition -->
     <div class="form-group">
       <label class="control-label col-sm-3" for="proposition">Proposition (€) :</label>
       <div class="col-sm-2"><input type="text" class="form-control" id="proposition" ng-model="prixCandidat" /></div>
     </div>
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
+        <!-- Bouton annuler -->
         <a ng-href="#!/detailAnnonce/{{annonce.idA}}">
           <button type="button" class="btn btn-danger">Annuler</button>
         </a>
+        <!-- Bouton valider -->
         <button type="submit" id="submit" class="btn btn-success">Valider</button>
       </div>
     </div>

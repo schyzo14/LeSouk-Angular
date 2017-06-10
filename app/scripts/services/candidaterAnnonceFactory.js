@@ -2,9 +2,9 @@
 
 /**
  * @ngdoc service
- * @name clientApp.AnnonceFactory
+ * @name clientApp.CandidaterAnnonceFactory
  * @description
- * # AnnonceFactory
+ * # CandidaterAnnonceFactory
  * Factory in the clientApp.
  */
 angular.module('leSoukApp')
