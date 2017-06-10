@@ -15,7 +15,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ngCookies'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -27,48 +28,68 @@ angular
 	  .when('/compte', {
         templateUrl: 'views/pageDeGarde.html',
         controller: 'PageDeGardeCtrl',
-        controllerAs: 'pageDeGarde'
+        controllerAs: 'pageDeGarde',
+        access: {
+          isFreeAccess : false
+        }
       })
       .when('/detailAnnonce/:idA', {
         templateUrl: 'views/detailAnnonce.html',
         controller: 'detailAnnonceCtrl',
-        controllerAs: 'detailAnnonce'
+        controllerAs: 'detailAnnonce',
+        access: {
+          isFreeAccess : false
+        }
       })
       .when('/propositionAchat/:idA', {
         templateUrl: 'views/propositionAchat.html',
         controller: 'propositionAchatCtrl',
-        controllerAs: 'propositionAchat'
+        controllerAs: 'propositionAchat',
+        access: {
+          isFreeAccess : false
+        }
       })
       .when('/seDeconnecter', {
         templateUrl: 'views/seDeconnecter.html',
         controller: 'SeDeconnecterCtrl',
-        controllerAs: 'SeDeconnecter'
+        controllerAs: 'SeDeconnecter',
+        access: {
+          isFreeAccess : false
+        }
       })
       .when('/cloturerAnnonce/:idA', {
         templateUrl: 'views/cloturerAnnonce.html',
         controller: 'cloturerAnnonceCtrl',
-        controllerAs: 'cloturerAnnonce'
+        controllerAs: 'cloturerAnnonce',
+        access: {
+          isFreeAccess : false
+        }
       })
       .when('/creerAnnonce/', {
         templateUrl: 'views/creerAnnonce.html',
         controller: 'creerAnnonceCtrl',
-        controllerAs: 'creerAnnonce'
+        controllerAs: 'creerAnnonce',
+        access: {
+          isFreeAccess : false
+        }
       })
       .when('/recherche/:search', {
         templateUrl: 'views/recherche.html',
         controller: 'RechercheCtrl',
-        controllerAs: 'recherche'
+        controllerAs: 'recherche',
+        access: {
+          isFreeAccess : false
+        }
       })
       .otherwise({
         redirectTo: '/'
       });
   })
-    .run(function ($rootScope, $location, $cookies) {
+  .run(function ($rootScope, $location, $cookies) {
     $rootScope.$on('$routeChangeStart', function (currRoute, prevRoute) {
-        if (prevRoute.access !== undefined) {
-
+        if (prevRoute.access != undefined) {
         // if route requires auth and user is not logged in
-        if (!prevRoute.access.isFreeAccess && (($cookies.get('idU') === undefined))) {
+        if (!prevRoute.access.isFreeAccess && ($cookies.get('idU') == null)) {
           // redirects to index
           $location.path('/');
         }
