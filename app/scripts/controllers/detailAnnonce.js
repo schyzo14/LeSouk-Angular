@@ -8,8 +8,8 @@
 * Controller of the leSoukApp
 */
 angular.module('leSoukApp')
-.controller('detailAnnonceCtrl', ['$scope', '$routeParams', '$cookies', '$q', 'AnnonceFactory', '$location', '$route', '$window', '$templateCache', 'UtilisateurFactory', 'CommenterAnnonceFactory',
-function ($scope, $routeParams, $cookies, $q, AnnonceFactory, $location, $route, $window, $templateCache, UtilisateurFactory, CommenterAnnonceFactory) {
+.controller('detailAnnonceCtrl', ['$scope', '$routeParams', '$cookies', '$q', 'AnnonceFactory', 'AnnonceClotureeFactory', '$location', '$route', '$window', '$templateCache', 'UtilisateurFactory', 'CommenterAnnonceFactory',
+function ($scope, $routeParams, $cookies, $q, AnnonceFactory, AnnonceClotureeFactory, $location, $route, $window, $templateCache, UtilisateurFactory, CommenterAnnonceFactory) {
   var idU = $cookies.get('idU');
   var idCreat = "";
   var idCand = "";
@@ -18,6 +18,17 @@ function ($scope, $routeParams, $cookies, $q, AnnonceFactory, $location, $route,
   /** Récupération éléments annonce**/
   //GET
   AnnonceFactory.get({'idA' : idA}).$promise.then(function(data) {
+    if(data.etatA == "Cloturée") {
+        AnnonceClotureeFactory.get({'idA' : idA}).$promise.then(function(dataComplet) {
+            if(idCreat!==null){
+                $scope.annonceur = dataComplet.createur.nom+"  "+dataComplet.createur.prenom+" : "+dataComplet.createur.mail;
+            }
+            
+            if(idCand!==null){
+                $scope.candidat = dataComplet.candidat.nom+" "+dataComplet.candidat.prenom+" : "+dataComplet.candidat.mail;
+            }
+        })
+    }
     $scope.idAnnonce = data.idA;
     $scope.nomAnnonce = data.nomA;
     $scope.descrAnnonce = data.descriptionA;
@@ -84,9 +95,7 @@ function ($scope, $routeParams, $cookies, $q, AnnonceFactory, $location, $route,
         /** Récupération éléments Utilisateur annonceur**/
         //GET
         if(idCreat!==null){
-          $scope.annonceur = data.createur.nom+"  "+data.createur.prenom+" : "+data.createur.mail;
           $scope.clotureeAnnonceur = true;
-
         }
       }
 
@@ -94,7 +103,6 @@ function ($scope, $routeParams, $cookies, $q, AnnonceFactory, $location, $route,
         /** Récupération éléments Utilisateur candidat**/
         //GET
         if(idCand!==null){
-          $scope.candidat = data.candidat.nom+" "+data.candidat.prenom+" : "+data.candidat.mail;
           $scope.clotureeCandidat = true;
         }else{
           $scope.clotureeNoCandidat = true;
