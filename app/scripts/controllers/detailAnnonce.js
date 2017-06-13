@@ -49,10 +49,14 @@ function ($scope, $routeParams, $cookies, $q, AnnonceFactory, AnnonceClotureeFac
       //Affichage du bouton Cloturer que si Active ou si idU=idCreateur
       if($scope.etatAnnonce==="Active"){
         $scope.boutonProp=true;
-        $scope.boutonCloturer=true;
+        if((idCreat!==null && idU!==idCreat.toString())){
+          $scope.boutonCloturer=false;
+        }else{
+          $scope.boutonCloturer=true;
+        }
       }else{
         $scope.boutonProp=false;
-        if($scope.etatAnnonce==="Optionnée" && (idCreat!==null && idU!==idCreat.toString())){
+        if((idCreat!==null && idU!==idCreat.toString())){
           $scope.boutonCloturer=false;
         }else{
           $scope.boutonCloturer=true;
