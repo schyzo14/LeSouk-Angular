@@ -4,21 +4,11 @@
   </div></div>
   <form class="form-horizontal" ng-submit="submit()">
     <!-- Si un utilisateur a candidaté -->
-    <span ng-if='user.nom !== undefined'>
-      <!-- Nom -->
+    <span ng-if='user.pseudo !== undefined'>
+      <!-- Pseudo -->
       <div class="form-group">
-        <label class="control-label col-sm-3" for="nom">Nom :</label>
-        <div class="col-sm-9"><p class="form-control-static">{{user.nom}}</p></div>
-      </div>
-      <!-- Prénom -->
-      <div class="form-group">
-        <label class="control-label col-sm-3" for="prenom">Prénom :</label>
-        <div class="col-sm-9"><p class="form-control-static">{{user.prenom}}</p></div>
-      </div>
-      <!-- Email -->
-      <div class="form-group">
-        <label class="control-label col-sm-3" for="email">E-Mail :</label>
-        <div class="col-sm-9"><p class="form-control-static">{{user.mail}}</p></div>
+        <label class="control-label col-sm-3" for="nom">Pseudo :</label>
+        <div class="col-sm-9"><p class="form-control-static">{{user.pseudo}}</p></div>
       </div>
       <!-- Prix demandé -->
       <div class="form-group">
@@ -32,7 +22,7 @@
       </div>
     </span>
     <!-- Si aucun candidat -->
-    <div ng-if='user.nom === undefined' class="col-sm-9">
+    <div ng-if='user.pseudo === undefined' class="col-sm-9">
       Il n'y a pas de candidat pour cette annonce.
     </div>
     <div class="form-group">
